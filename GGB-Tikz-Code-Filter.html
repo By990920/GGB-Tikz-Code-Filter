@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTikTrim</title>
+    <meta name="description" content="Transform GGB's messy TikZ exports into clean, ready-to-use code for your .tex files. One click and you're done!">
+
+    <!-- Favicon 设置 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    
+    <!-- Android Chrome 图标 -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon/android-chrome-512x512.png">
+    
+    <!-- 传统favicon.ico（兼容旧浏览器） -->
+    <link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="icon/favicon.ico" type="image/x-icon">
+    
+    <link rel="manifest" href="icon/site.webmanifest">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .uptime-timer {
+            color: #555;
+            font-size: 12px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 0 0 10px 0;
+            padding: 0;
+            opacity: 0.8;
+        }
+
+        .uptime-timer span {
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        .memorial-note {
+            color: #666;
+            font-size: 12px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 5px 0 15px 0;
+            padding: 0;
+            opacity: 0.7;
+            text-align: left;
+            font-style: italic;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-links {
+                padding-right: 0;
+            }
+        }
+        
+        .input-section, .output-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            resize: vertical;
+            transition: border-color 0.3s;
+            background: #fafafa;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .options {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .options input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            /*justify-content: space-between;  添加这一行 */
+            /*width: 100%; /* 确保宽度100% */
+        }
+        
+        button {
+            padding: 8px 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;          
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #cleanBtn {
+            background: #2ecc71;
+        }
+        
+        #cleanBtn:hover {
+            background: #27ae60;
+        }
+        
+        #copyBtn {
+            background: #9b59b6;
+        }
+        
+        #copyBtn:hover {
+            background: #8e44ad;
+        }
+        
+        #clearBtn {
+            background: #e74c3c;
+        }
+        
+        #clearBtn:hover {
+            background: #c0392b;
+        }
+
+        #shareBtn {
+            background: #f39c12;
+        }
+
+        #shareBtn:hover {
+            background: #e67e22;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 6px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s;
+            z-index: 1000;
+            font-size: 12px;
+            font-weight: 500;   
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification.error {
+            background: #e74c3c;
+        }
+        
+        .icon {
+            font-size: 14px;
+            margin-left: -3px;
+        }
+
+        .info-links {
+            margin-top: 10px; /* 按钮下方的间距 */
+            font-size: 12px;
+            color: #666;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .info-links a {
+            color: #007bff;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .info-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* 通用的链接样式 */
+        a[target="_blank"]:not(.pdf-download-btn) {
+            color: #007bff;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a[target="_blank"]:not(.pdf-download-btn):hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* 功能展示和视频区域样式 */
+        .version-timeline {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .version-timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px; /* 调整为10px */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        .version-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .version-item:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .version-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-item::before {
+            content: '';
+            position: absolute;
+            left: -26px; /* 调整位置使其与时间线对齐 */
+            top: 50%; /* 使用百分比垂直居中 */
+            transform: translateY(-50%); /* 垂直居中 */
+            width: 10px; /* 调整为10px */
+            height: 10px; /* 调整为10px */
+            border-radius: 50%;
+            background: #3498db;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            z-index: 1; /* 确保小圆点在时间线上方 */
+        }
+
+        .version-date {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px; /* 改为6px圆角，与按钮一致 */
+            font-size: 12px;
+            font-weight: 500; /* 改为500，与按钮一致 */
+            margin-bottom: 8px;
+            border: none;
+            cursor: default; /* 只是装饰，所以不要手形光标 */
+        }
+
+        .version-title {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .version-features {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .version-features li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            color: #555;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .version-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .version-item:last-child .version-features li::before {
+            content: '○'; /* 空心圆表示计划中/开发中 */
+            color: #f39c12; /* 使用开发中按钮的颜色 */
+            font-size: 12px;
+        }
+
+        .version-features li:last-child {
+            margin-bottom: 0;
+        }
+
+        .version-features li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 功能状态标记 - 调整为更小的按钮样式 */
+        .status-badge {
+            display: inline-block;
+            padding: 2px 6px; /* 更小的内边距 */
+            border-radius: 6px; /* 6px圆角，与按钮一致 */
+            font-size: 10px; /* 更小的字体 */
+            font-weight: 500; /* 与按钮一致 */
+            margin-left: 8px;
+            vertical-align: middle;
+            border: none;
+            cursor: default; /* 只是装饰，所以不要手形光标 */
+        }
+
+        .status-released {
+            background: #2ecc71; /* 使用成功按钮的颜色 */
+            color: white;
+        }
+
+        .status-developing {
+            background: #f39c12; /* 使用分享按钮的颜色 */
+            color: white;
+        }
+
+        .status-planned {
+            background: #3498db; /* 使用主按钮的颜色 */
+            color: white;
+        }
+
+        /* 视频容器样式 */
+        .video-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .video-container:hover {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .video-container h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .video-container h3::before {
+            content: "📺";
+            font-size: 14px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+            border: 2px solid #ddd;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-note {
+            margin-top: 12px;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-style: italic;
+        }
+
+        /* 功能展示和视频区域样式 - 与原有风格统一 */
+        .info-video-section {
+            margin-top: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #ecf0f1;
+        }
+
+        .info-video-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: normal;
+        }
+        
+        /* 版本说明样式 */
+        .version-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .version-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .version-info h3::before {
+            content: "🏷️";
+            font-size: 14px;
+        }
+
+        .pdf-download-btn {
+            display: inline-block;
+            padding: 3px 5px;
+            background: white;
+            border-radius: 6px;
+            color: #666;
+            text-decoration: none;
+            margin: 3px 0 10px 25px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .pdf-download-btn:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .info-video-section {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            
+            .info-video-section h2 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .video-container,
+            .version-info {
+                padding: 15px;
+            }
+            
+            .welcome-note p {
+                font-size: 13px;
+                gap: 6px;
+            }
+            
+            .version-timeline {
+                padding-left: 20px;
+            }
+            
+            .version-item {
+                padding: 12px;
+            }
+            
+            .version-item::before {
+                left: -22px; /* 调整移动端位置 */
+                width: 8px; /* 移动端更小一点 */
+                height: 8px;
+            }
+            
+            .version-title {
+                font-size: 13px;
+            }
+            
+            .version-features li {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="uptime-timer" class="uptime-timer">
+            🕒 已运行: <span id="uptime-display">0d 0h 0m 0s</span>
+        </div>
+        <div class="memorial-note">
+            🕯️谨此怀念方大同先生
+        </div>
+        <div class="main-content">
+            <div class="input-section">
+                <h2>输入GGB代码</h2>
+                <textarea id="inputCode" placeholder="粘贴GeoGebra导出的TikZ代码...">\documentclass[10pt]{article}
+                    \usepackage{pgfplots}
+                    \pgfplotsset{compat=1.15}
+                    \usepackage{mathrsfs}
+                    \usetikzlibrary{arrows}
+                    \pagestyle{empty}
+                    \begin{document}
+                    \definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+                    \definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+                    \definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+                    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+                    \begin{axis}[
+                    x=1cm,y=1cm,
+                    axis lines=middle,
+                    ymajorgrids=true,
+                    xmajorgrids=true,
+                    xmin=-3.743315809262022,
+                    xmax=9.175326950288733,
+                    ymin=-3.332572693316388,
+                    ymax=5.603304641484998,
+                    xtick={-3,-2,...,9},
+                    ytick={-3,-2,...,5},]
+                    \clip(-3.743315809262022,-3.332572693316388) rectangle (9.175326950288733,5.603304641484998);
+                    \draw [line width=2pt] (0,0)-- (4,0);
+                    \draw [line width=2pt] (4.280146173687662,3.4453699204389583)-- (4,0);
+                    \draw [line width=2pt] (4.280146173687662,3.4453699204389583)-- (0,0);
+                    \draw [line width=2pt] (2.0090344308096597,1.617203365527609)-- (4,0);
+                    \draw [line width=2pt] (2.0090344308096597,1.617203365527609)-- (4.132361586114987,1.6278452831221129);
+                    \begin{scriptsize}
+                    \draw [fill=uuuuuu] (0,0) circle (2pt);
+                    \draw[color=uuuuuu] (0.10910456522284437,0.2808817556835242) node {$D$};
+                    \draw [fill=xdxdff] (4,0) circle (2.5pt);
+                    \draw[color=xdxdff] (4.120835556697686,0.3098473224089744) node {$E$};
+                    \draw [fill=ududff] (4.280146173687662,3.4453699204389583) circle (2.5pt);
+                    \draw[color=ududff] (4.396008440589462,3.756749762737548) node {$A$};
+                    \draw [fill=xdxdff] (2.0090344308096597,1.617203365527609) circle (2.5pt);
+                    \draw[color=xdxdff] (2.122211452641628,1.9319190590341855) node {$B$};
+                    \draw [fill=xdxdff] (4.132361586114987,1.6278452831221129) circle (2.5pt);
+                    \draw[color=xdxdff] (4.251180606962212,1.9464018423969105) node {$C$};
+                    \end{scriptsize}
+                    \end{axis}
+                    \end{tikzpicture}
+                    \end{document}</textarea>
+                
+                <div class="options">
+                    <label>
+                        <input type="checkbox" id="includePoints" checked> 包含点标记
+                    </label>
+                    <label>
+                        <input type="checkbox" id="includeLabels" checked> 包含点标签
+                    </label>
+                    <label>
+                        <input type="checkbox" id="roundCoordinates" checked> 坐标四舍五入到3位小数
+                    </label>
+                </div>
+                
+                <div class="controls">
+                    <button id="cleanBtn">
+                        <span class="icon">🧹</span> 清理代码
+                    </button>
+                    <button id="clearBtn">
+                        <span class="icon">🗑️</span> 清空
+                    </button>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <h2>输出简洁代码</h2>
+                <textarea id="outputCode" readonly placeholder="转换后的代码将显示在这里..."></textarea>
+                
+                <div class="controls">
+                    <button id="copyBtn">
+                        <span class="icon">📋</span> 复制代码
+                    </button>
+                    <button id="shareBtn" class="share-btn">
+                        <span class="icon">🔗</span> 分享
+                    </button>
+                </div>
+
+
+                <br>
+                <br>
+                <div class="info-links">
+                    <p>QQ群: <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=MaCZnRVQesKeuvwyh9Tli7Wc1WjeFD45&authKey=P6uJIV4cqX%2F9Gi9sfe87Mmyim3f2ELtSBjYJb3rVc7FKP2DQSvvHjUGhi666Bd7d&noverify=0&group_code=1029757969" target="_blank">1029757969</a></p>
+                    <p>B站ID: <a href="https://b23.tv/iTeWDSe" target="_blank">@礼貌小猫咪</a></p>
+                    <p>项目地址: <a href="https://gitee.com/Jack0920/ggb-tikz-code-filter" target="_blank">https://gitee.com/Jack0920/ggb-tikz-code-filter</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-video-section">
+            <h2>版本信息与视频教程</h2>
+            <div class="video-container">
+                <h3>视频教程</h3>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://player.bilibili.com/player.html?isOutside=true&aid=115857212637655&bvid=BV1E8iDBaE4s&cid=35254370334&p=1"
+                        width="100%"
+                        height="500"
+                        scrolling="no"
+                        border="0"
+                        frameborder="no"
+                        framespacing="0"
+                        allowfullscreen="true"
+                        style="border-radius: 8px;">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="version-info">
+                <h3>版本信息</h3>
+                <a href="https://gitee.com/Jack0920/ggb-tikz-code-filter/raw/main/test/test.pdf" 
+                target="_blank" 
+                class="pdf-download-btn">
+                📄 查看效果文档
+                </a>
+                <div class="version-timeline">
+                    
+                    <div class="version-item">
+                        <span class="version-date">2026.01.06</span>
+                        <h4 class="version-title">版本 0.0.1
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>优化数值为3位小数</li>
+                            <li>绘制小圆点</li>
+                            <li>绘制线段</li>
+                            <li>绘制圆</li>
+                            <li>绘制点标签</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="version-item">
+                        <span class="version-date">2026.01.08</span>
+                        <h4 class="version-title">版本 0.0.2 
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>新增线型转换（虚线、点线、点虚线）</li>
+                            <li>新增绘制各种圆弧</li>
+                            <li>新增绘制多边形</li>
+                        </ul>
+                    </div>
+
+                    <div class="version-item">
+                        <span class="version-date">2026.01.10</span>
+                        <h4 class="version-title">版本 0.0.3 
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>新增绘制椭圆及其线型</li>
+                            <li>新增绘制角度及角度标签</li>
+                            <li>新增绘制圆及圆弧的线型</li>
+                        </ul>
+                    </div>
+
+                    <div class="version-item">
+                        <span class="version-date">2026.01.11</span>
+                        <h4 class="version-title">版本 0.0.4 
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>新增绘制函数及其线型</li>
+                            <li>新增绘制文本标签</li>
+                            <li>设置网站域名为 <a href="https://geotiktrim.site/" target="_blank">
+                                GeoTikTrim.site</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="version-item">
+                        <span class="version-date">2026.01.13</span>
+                        <h4 class="version-title">版本 0.0.5 
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>优化了点标签的位置</li>
+                            <li>新增绘制扇形</li>
+                            <li>版本信息部分添加 <a href="https://gitee.com/Jack0920/ggb-tikz-code-filter/raw/main/test/test.pdf" target="_blank">
+                                    test.pdf</a> 下载
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="version-item">
+                        <span class="version-date">即将发布</span>
+                        <h4 class="version-title">版本 0.0.6 
+                            <span class="status-badge status-developing">开发中</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>箭头线型</li>
+                            <li>...</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+       
+    <div id="notification" class="notification"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const START_TIME = "2026-01-06 21:30:00"; // 修改为你网站的实际起始时间
+
+            // 计时器函数
+            function updateUptimeTimer() {
+                const startDate = new Date(START_TIME);
+                const now = new Date();
+                const diff = now - startDate; // 时间差（毫秒）
+                
+                // 如果起始时间在未来，则显示0
+                if (diff < 0) {
+                    document.getElementById('uptime-display').textContent = '0d 0h 0m 0s';
+                    return;
+                }
+                
+                // 计算天、小时、分钟、秒
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                // 更新显示
+                document.getElementById('uptime-display').textContent = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            // 立即启动计时器，然后每秒更新一次
+            updateUptimeTimer(); // 初始调用
+            setInterval(updateUptimeTimer, 1000); // 每秒更新
+            const inputCode = document.getElementById('inputCode');
+            const outputCode = document.getElementById('outputCode');
+            const cleanBtn = document.getElementById('cleanBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const includePoints = document.getElementById('includePoints');
+            const includeLabels = document.getElementById('includeLabels');
+            const roundCoordinates = document.getElementById('roundCoordinates');
+            const notification = document.getElementById('notification');
+            const shareBtn = document.getElementById('shareBtn');
+            
+            function showNotification(message, isError = false) {
+                notification.textContent = message;
+                notification.className = 'notification';
+                if (isError) {
+                    notification.classList.add('error');
+                }
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+            
+            function roundToThreeDecimals(num) {
+                return Math.round(num * 1000) / 1000;
+            }
+            
+            function formatCoordinate(coordStr, shouldRound) {
+                const match = coordStr.match(/\(([^,]+),([^)]+)\)/);
+                if (!match) return coordStr;
+                
+                let x = parseFloat(match[1]);
+                let y = parseFloat(match[2]);
+                
+                if (shouldRound) {
+                    x = roundToThreeDecimals(x);
+                    y = roundToThreeDecimals(y);
+                }
+                
+                return `(${x},${y})`;
+            }
+
+            // 点标签位置函数
+            function getSmartLabelPosition(x, y, allPoints) {
+                // 计算所有点的边界
+                const xCoords = allPoints.map(p => p.x);
+                const yCoords = allPoints.map(p => p.y);
+                const minX = Math.min(...xCoords);
+                const maxX = Math.max(...xCoords);
+                const minY = Math.min(...yCoords);
+                const maxY = Math.max(...yCoords);
+                const centerX = (minX + maxX) / 2;
+                const centerY = (minY + maxY) / 2;
+                
+                // 判断点所在区域
+                let position = 'above';
+                
+                // 边界点处理
+                if (Math.abs(x - minX) < 0.1) {
+                    position = 'left';    // 最左边的点，标签在左边
+                } else if (Math.abs(x - maxX) < 0.1) {
+                    position = 'right';   // 最右边的点，标签在右边
+                } else if (Math.abs(y - minY) < 0.1) {
+                    position = 'below';   // 最下边的点，标签在下面
+                } else if (Math.abs(y - maxY) < 0.1) {
+                    position = 'above';   // 最上边的点，标签在上面
+                } else {
+                // 内部点根据象限决定
+                if (x > centerX && y > centerY) {
+                    position = 'above right';
+                } else if (x > centerX && y <= centerY) {
+                    position = 'below right';
+                } else if (x <= centerX && y > centerY) {
+                    position = 'above left';
+                } else {
+                    position = 'below left';
+                }
+            }
+                
+                return position;
+            }
+
+             // 线型转换函数
+             const convertLineStyle = (style) => {
+                    if (!style) return '';
+                    
+                    let lineStyle = style.replace(/line width=[^,\]]+,?/g, '');
+                    lineStyle = lineStyle.replace(/,\s*$/g, '');
+                    lineStyle = lineStyle.replace(/\[\s*,\s*/g, '[');
+                    
+                    if (lineStyle.includes('dash pattern=on 1pt off 1pt on 1pt off 4pt')) {
+                        return 'dash dot';
+                    } else if (lineStyle.includes('dash pattern=on 1pt off 1pt')) {
+                        return 'dashed';
+                    } else if (lineStyle.includes('dotted')) {
+                        return 'dotted';
+                    } else if (lineStyle.includes('dash')) {
+                        return 'dashed';
+                    }
+                    
+                    return '';
+                };
+
+            // 匹配二次函数图像代码
+            function extractQuadraticFunctions(code) {
+                try {
+                
+                    const quadraticRegex = /\\draw\s*\[([^\]]+)\]\s*plot\s*\(\\x,\{\(\\x\)\^2\/2\/([^}]+)\}\)/g;
+                    
+                    const quadraticMatches = [...code.matchAll(quadraticRegex)];
+                    const quadraticFunctions = [];
+                    
+                    const shouldRound = roundCoordinates.checked;
+                    
+                    quadraticMatches.forEach(match => {
+                        const options = match[1];
+                        let denominator = match[2];
+                        
+                        console.log("找到二次函数:", match[0]); // 调试用
+                        
+                        // 提取各种参数
+                        const samplesMatch = options.match(/samples=(\d+)/);
+                        const rotateMatch = options.match(/rotate around=\{([^:]+):\(([^,]+),([^)]+)\)\}/);
+                        const xshiftMatch = options.match(/xshift=([^,]+)cm/);
+                        const yshiftMatch = options.match(/yshift=([^,]+)cm/);
+                        const domainMatch = options.match(/domain=([^:)]+):([^)]+)\)?/);
+                        
+                        if (domainMatch) {
+                            let angle = "0";
+                            let centerX = "0";
+                            let centerY = "0";
+                            
+                            if (rotateMatch) {
+                                angle = rotateMatch[1];
+                                centerX = rotateMatch[2];
+                                centerY = rotateMatch[3];
+                            }
+                            
+                            let xshift = "0";
+                            let yshift = "0";
+                            
+                            if (xshiftMatch) {
+                                xshift = xshiftMatch[1];
+                            }
+                            
+                            if (yshiftMatch) {
+                                yshift = yshiftMatch[1];
+                            }
+                            
+                            let domainStart = domainMatch[1];
+                            let domainEnd = domainMatch[2];
+                            
+                            // 清理domainEnd中的右括号
+                            if (domainEnd.includes(')')) {
+                                domainEnd = domainEnd.replace(')', '');
+                            }
+                            
+                            // 四舍五入
+                            if (shouldRound) {
+                                if (centerX !== "0") centerX = roundToThreeDecimals(parseFloat(centerX));
+                                if (centerY !== "0") centerY = roundToThreeDecimals(parseFloat(centerY));
+                                if (xshift !== "0") xshift = roundToThreeDecimals(parseFloat(xshift));
+                                if (yshift !== "0") yshift = roundToThreeDecimals(parseFloat(yshift));
+                                denominator = roundToThreeDecimals(parseFloat(denominator));
+                                domainStart = roundToThreeDecimals(parseFloat(domainStart));
+                                domainEnd = roundToThreeDecimals(parseFloat(domainEnd));
+                                
+                                // 添加cm单位
+                                xshift += 'cm';
+                                yshift += 'cm';
+                            }
+                            
+                            // 构建新的选项 - 总是包含 smooth
+                            let newOptions = 'smooth,samples=500';
+                            
+                            // 添加旋转参数（如果有）
+                            if (rotateMatch) {
+                                newOptions += `,rotate around={${angle}:(${centerX},${centerY})}`;
+                            }
+                            
+                            // 添加平移参数（如果有且不为0）
+                            if ((xshiftMatch && xshift !== "0cm") || (yshiftMatch && yshift !== "0cm")) {
+                                newOptions += `,xshift=${xshift},yshift=${yshift}`;
+                            }
+                            
+                            newOptions += `,domain=${domainStart}:${domainEnd}`;
+                            
+                            quadraticFunctions.push({
+                                original: match[0],
+                                options: newOptions,
+                                expression: `(\\x)^2/2/${denominator}`
+                            });
+                            
+                            console.log("处理后的二次函数选项:", newOptions); // 调试用
+                        }
+                    });
+                    
+                    console.log(`共找到 ${quadraticFunctions.length} 个二次函数`);
+                    
+                    return {
+                        hasQuadratic: quadraticFunctions.length > 0,
+                        quadraticFunctions: quadraticFunctions
+                    };
+                    
+                } catch (error) {
+                    console.error('提取二次函数出错:', error);
+                    return {
+                        hasQuadratic: false,
+                        quadraticFunctions: []
+                    };
+                }
+            }
+
+            // 修改extractFunctionPlots函数，使其包含二次函数
+            function extractFunctionPlots(code) {
+                try {
+                    // 提取clip范围（从\clip命令中）
+                    const clipRegex = /\\clip\(([^,]+),([^)]+)\)\s*rectangle\s*\(([^,]+),([^)]+)\);/;
+                    const clipMatch = code.match(clipRegex);
+                    
+                    if (!clipMatch) {
+                        throw new Error('未找到clip范围定义');
+                    }
+                    
+                    // 四舍五入clip坐标到三位小数
+                    const shouldRound = roundCoordinates.checked;
+                    
+                    const clipX1 = shouldRound ? roundToThreeDecimals(parseFloat(clipMatch[1])) : parseFloat(clipMatch[1]);
+                    const clipY1 = shouldRound ? roundToThreeDecimals(parseFloat(clipMatch[2])) : parseFloat(clipMatch[2]);
+                    const clipX2 = shouldRound ? roundToThreeDecimals(parseFloat(clipMatch[3])) : parseFloat(clipMatch[3]);
+                    const clipY2 = shouldRound ? roundToThreeDecimals(parseFloat(clipMatch[4])) : parseFloat(clipMatch[4]);
+                    
+                    // 提取普通函数图像
+                    const functionPlotRegex = /\\draw\[([^\]]*)\]\s*plot\s*\(\\x,\{([^}]*)\}\)/g;
+                    const functionMatches = [...code.matchAll(functionPlotRegex)];
+                    const functions = [];
+                    
+                    // 用于检查是否包含ln函数
+                    const containsLnRegex = /ln\s*\(/i;
+                    
+                    functionMatches.forEach(match => {
+                        const options = match[1];
+                        const functionExpression = match[2];
+                        
+                        // 提取domain
+                        const domainRegex = /domain=([^:]+):([^,\]]+)/;
+                        const domainMatch = options.match(domainRegex);
+                        
+                        if (domainMatch) {
+                            let domainStart = domainMatch[1];
+                            let domainEnd = domainMatch[2];
+                            
+                            // 如果是ln函数且起始域接近0，设置为0.001
+                            if (containsLnRegex.test(functionExpression)) {
+                                const startNum = parseFloat(domainStart);
+                                if (Math.abs(startNum) < 0.001) {
+                                    domainStart = '0.001';
+                                }
+                            }
+                            
+                            // 四舍五入domain值
+                            if (shouldRound) {
+                                const startNum = parseFloat(domainStart);
+                                const endNum = parseFloat(domainEnd);
+                                
+                                if (!isNaN(startNum)) {
+                                    domainStart = roundToThreeDecimals(startNum).toString();
+                                }
+                                if (!isNaN(endNum)) {
+                                    domainEnd = roundToThreeDecimals(endNum).toString();
+                                }
+                            }
+                            
+                            // 提取线型（如果有）
+                            let lineStyle = '';
+                            if (options.includes('dash pattern=on 1pt off 1pt on 1pt off 4pt')) {
+                                lineStyle = 'dash dot';
+                            } else if (options.includes('dash pattern=on 1pt off 1pt')) {
+                                lineStyle = 'dashed';
+                            } else if (options.includes('dotted')) {
+                                lineStyle = 'dotted';
+                            } else if (options.includes('line width=2pt')) {
+                                // 如果是实线，可以添加 'solid' 或不添加
+                                lineStyle = '';
+                            }
+                            
+                            // 构建新的选项字符串
+                            let newOptions = 'smooth,samples=500';
+                            if (lineStyle) {
+                                newOptions = lineStyle + ',' + newOptions;
+                            }
+                            
+                            functions.push({
+                                original: match[0],
+                                options: newOptions,
+                                domainStart: domainStart,
+                                domainEnd: domainEnd,
+                                expression: functionExpression,
+                                lineStyle: lineStyle
+                            });
+                        }
+                    });
+                    
+                    // 提取二次函数
+                    const quadraticResult = extractQuadraticFunctions(code);
+                    
+                    // 构建scope环境
+                    let result = '  \\begin{scope}\n';
+                    result += `    \\clip(${clipX1},${clipY1}) rectangle (${clipX2},${clipY2});\n`;
+                    
+                    // 输出普通函数
+                    functions.forEach(func => {
+                        result += `    \\draw[${func.options},domain=${func.domainStart}:${func.domainEnd}] plot(\\x,{${func.expression}});\n`;
+                    });
+                    
+                    // 输出二次函数
+                    if (quadraticResult.hasQuadratic) {
+                        quadraticResult.quadraticFunctions.forEach(quad => {
+                            result += `    \\draw[${quad.options}] plot(\\x,{${quad.expression}});\n`;
+                        });
+                    }
+                    
+                    result += '  \\end{scope}\n';
+                    
+                    return {
+                        hasFunctions: functions.length > 0 || quadraticResult.hasQuadratic,
+                        scopeCode: result,
+                        clipArea: `(${clipX1},${clipY1}) rectangle (${clipX2},${clipY2})`,
+                        normalFunctionCount: functions.length,
+                        quadraticFunctionCount: quadraticResult.quadraticFunctions.length
+                    };
+                    
+                } catch (error) {
+                    console.error('提取函数图像出错:', error);
+                    return {
+                        hasFunctions: false,
+                        scopeCode: '',
+                        clipArea: '',
+                        normalFunctionCount: 0,
+                        quadraticFunctionCount: 0
+                    };
+                }
+            }
+
+            // 主要处理函数
+            function cleanTikZCode(code) {
+            try {
+                const tikzMatch = code.match(/\\begin\{tikzpicture\}([\s\S]*?)\\end\{tikzpicture\}/);
+                if (!tikzMatch) {
+                    throw new Error('未找到tikzpicture环境');
+                }
+                
+                const pointRegex = /\\draw\s*\[fill=[^\]]+\]\s*\(([^)]+)\)\s*circle\s*\(([^)]+)\);/g;
+                const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$([A-Za-z]+)\$\}/g;
+                
+                const pointMap = new Map();
+                const pointMatches = [...code.matchAll(pointRegex)];
+                const nodeMatches = [...code.matchAll(nodeRegex)];
+                
+                const shouldRound = roundCoordinates.checked;
+                
+                const allPoints = [];
+                pointMatches.forEach((match, index) => {
+                    const coords = match[1];
+                    const formattedCoords = formatCoordinate(`(${coords})`, shouldRound);
+                    allPoints.push({
+                        original: coords,
+                        formatted: formattedCoords.slice(1, -1)
+                    });
+                });
+                
+                allPoints.forEach((point, index) => {
+                    if (index < nodeMatches.length) {
+                        const label = nodeMatches[index][1];
+                        pointMap.set(label, point.formatted);
+                    }
+                });
+
+                const functionPlotsResult = extractFunctionPlots(code);
+
+                // 处理文本标签
+                const textLabelRegex = /\\draw\s*\(([^)]+)\)\s*node\s*\[([^\]]+)\]\s*\{([^}]+)\};/g;
+
+                // 提取所有文本标签
+                const textLabelMatches = [...code.matchAll(textLabelRegex)];
+                const textLabels = [];
+
+                textLabelMatches.forEach(match => {
+                    const coords = match[1];  // 坐标，如 "2.32,2.88"
+                    const options = match[2]; // 选项，如 "anchor=north west"
+                    const content = match[3]; // 内容，如 "hello world" 或 "Figure 1"
+                    
+                    // 格式化坐标（如果需要四舍五入）
+                    const formattedCoords = formatCoordinate(`(${coords})`, shouldRound);
+                    
+                    textLabels.push({
+                        original: match[0],
+                        coords: formattedCoords,
+                        options: options,
+                        content: content
+                    });
+                });
+
+                
+
+                // 处理角度标签节点
+                const angleLabelRegex = /\\draw\[color=([^\]]+)\]\s*\(([^)]+)\)\s*node\s*\{\$([^}]+)\\textrm\{\\degre\}\$\};/g;
+
+                // 提取所有角度标签节点
+                const angleLabelMatches = [...code.matchAll(angleLabelRegex)];
+                const angleLabels = [];
+
+                angleLabelMatches.forEach(match => {
+                    const color = match[1];
+                    const coords = match[2];
+                    const content = match[3]; // 如 "α = 64.94"
+                    
+                    // 格式化坐标（如果需要四舍五入）
+                    const formattedCoords = formatCoordinate(`(${coords})`, shouldRound);
+                    
+                    angleLabels.push({
+                        original: match[0],
+                        color: color,
+                        coords: formattedCoords,
+                        content: content
+                    });
+                });
+                
+                const lineRegex = /\\draw\s*(\[[^\]]+\])?\s*\(([^)]+)\)\s*--\s*\(([^)]+)\);/g;
+                const lineMatches = [...code.matchAll(lineRegex)];
+
+               
+
+                // 只匹配几何圆
+                const circleRegex = /\\draw\s*\[([^\]]*line[^\]]*)\]\s*\(([^)]+)\)\s*circle\s*\(([^)]+)\);/g;
+
+                // 提取圆
+                const circleMatches = [...code.matchAll(circleRegex)];
+                const circles = [];
+
+                circleMatches.forEach(match => {
+                const options = match[1];  // 如 "line width=2pt,dotted"
+                const centerCoords = match[2];  // 圆心坐标
+                const radius = match[3];  // 半径
+                
+                const formattedCenter = formatCoordinate(`(${centerCoords})`, shouldRound);
+                
+                const lineStyle = convertLineStyle(options);
+                
+                let centerLabel = null;
+                                for (const [label, coords] of pointMap) {
+                                    const coordStr = coords.includes('(') ? coords : `(${coords})`;
+                                    if (coordStr.includes(centerCoords.trim()) || 
+                                        formattedCenter.includes(coords)) {
+                                        centerLabel = label;
+                                        break;
+                                    }
+                                }
+                
+                circles.push({
+                    center: centerLabel ? `(${centerLabel})` : formattedCenter,
+                    radius: shouldRound ? roundToThreeDecimals(parseFloat(radius)) + (radius.includes('cm') ? 'cm' : '') : radius,
+                    originalCenter: centerCoords,
+                    lineStyle: lineStyle  // 保存提取的线型
+                });
+            });
+
+                //圆弧正则表达式
+                const arcRegex = /\\draw\s*(\[[^\]]*\])?\s*plot\[domain=([^:]+):([^,]+),variable=\\t\]\(\{1\*([^\*]+)\*cos\(\\t r\)\+0\*[^\*]+\*sin\(\\t r\)\},\{0\*[^\*]+\*cos\(\\t r\)\+1\*[^\*]+\*sin\(\\t r\)\}\);/g;
+                const arcMatches = [...code.matchAll(arcRegex)];
+                const arcs = [];
+                arcMatches.forEach(match => {
+                    const style = match[1] || '';
+                    const startAngle = match[2];
+                    const endAngle = match[3];
+                    const radius = match[4];
+                    
+                    // 四舍五入函数
+                    const roundValue = (val) => {
+                        return shouldRound ? roundToThreeDecimals(parseFloat(val)) : val;
+                    };
+                    
+                    // 直接从样式字符串中提取线型（不通过convertLineStyle函数）
+                    let lineStyle = '';
+                    if (style.includes('dash pattern=on 1pt off 1pt on 1pt off 4pt')) {
+                        lineStyle = 'dash dot';
+                    } else if (style.includes('dash pattern=on 1pt off 1pt')) {
+                        lineStyle = 'dashed';
+                    } else if (style.includes('dotted')) {
+                        lineStyle = 'dotted';
+                    }
+                    // 注意：这里不再检查一般的'dash'，因为可能与其他样式冲突
+                    
+                    // 从样式字符串中提取shift坐标
+                    const shiftRegex = /shift=\{\(([^,]+),([^)]+)\)\}/;
+                    const shiftMatch = style.match(shiftRegex);
+                    
+                    // 构建新的样式字符串
+                    let newStyle = '[';
+                    let styleParts = [];
+                    
+                    // 添加线型（如果存在）
+                    if (lineStyle) {
+                        styleParts.push(lineStyle);
+                    }
+                    
+                    // 添加shift坐标（如果存在）
+                    if (shiftMatch) {
+                        const shiftX = roundValue(shiftMatch[1]);
+                        const shiftY = roundValue(shiftMatch[2]);
+                        styleParts.push(`shift={(${shiftX},${shiftY})}`);
+                    }
+                    
+                    // 添加smooth
+                    styleParts.push('smooth');
+                    
+                    // 组合所有样式部分
+                    if (styleParts.length > 0) {
+                        newStyle += styleParts.join(', ') + ']';
+                    } else {
+                        newStyle = '';  // 如果没有样式，则不添加括号
+                    }
+                    
+                    arcs.push({
+                        style: newStyle,
+                        startAngle: roundValue(startAngle),
+                        endAngle: roundValue(endAngle),
+                        radius: roundValue(radius)
+                    });
+                });
+
+                //扇形正则表达式
+                const sectorRegex = /\\draw\s*\[shift=\{\(([^,]+),([^)]+)\)\}[^\]]*\]\s*\(0,0\)\s*--\s*plot\[domain=([^:]+):([^,\]]+),variable=\\t\]\(\{1\*([^\*]+)\*cos\(\\t r\)\+0\*[^\*]+\*sin\(\\t r\)\},\{0\*[^\*]+\*cos\(\\t r\)\+1\*[^\*]+\*sin\(\\t r\)\}\)\s*--\s*cycle\s*;/g;
+
+                // 提取扇形
+                const sectorMatches = [...code.matchAll(sectorRegex)];
+                const sectors = [];
+
+                sectorMatches.forEach(match => {
+                    const shiftX = match[1].trim();
+                    const shiftY = match[2].trim();
+                    const startAngle = match[3].trim();
+                    const endAngle = match[4].trim();
+                    const radius = match[5].trim();
+                    
+                    // 提取样式中的线型
+                    const style = match[0].match(/\\draw\s*\[([^\]]+)\]/)[1];
+                    
+                    // 转换线型（使用已有的 convertLineStyle 函数）
+                    const lineStyle = convertLineStyle(style);
+                    
+                    // 四舍五入
+                    const roundValue = (val) => {
+                        return shouldRound ? roundToThreeDecimals(parseFloat(val)) : val;
+                    };
+                    
+                    // 构建扇形对象
+                    sectors.push({
+                        shiftX: roundValue(shiftX),
+                        shiftY: roundValue(shiftY),
+                        startAngle: roundValue(startAngle),
+                        endAngle: roundValue(endAngle),
+                        radius: roundValue(radius),
+                        lineStyle: lineStyle
+                    });
+                });
+
+                // 椭圆正则表达式 - 匹配所有椭圆的绘制命令
+                const ellipseRegex = /\\draw\s*\[([^\]]*)\]\s*\(([^)]+)\)\s*ellipse\s*\(([^)]+)\);/g;
+
+                // 提取椭圆
+                const ellipseMatches = [...code.matchAll(ellipseRegex)];
+                const ellipses = [];
+
+                ellipseMatches.forEach(match => {
+                    const options = match[1];  // 获取所有选项，包括旋转和线型
+                    const centerCoords = match[2];  // 中心坐标
+                    const radii = match[3];  // 半径，如 "0.5362337857159191cm and 0.3186762996405716cm"
+                    
+                    // 解析半径（x轴半径和y轴半径，用and分隔）
+                    const radiusParts = radii.split(' and ');
+                    const xRadiusStr = radiusParts[0]?.trim() || '';
+                    const yRadiusStr = radiusParts[1]?.trim() || '';
+                    
+                    // 格式化中心坐标
+                    const formattedCenter = formatCoordinate(`(${centerCoords})`, shouldRound);
+                    
+                    // 查找中心点对应的标签
+                    let centerLabel = null;
+                    for (const [label, coords] of pointMap) {
+                        const coordStr = coords.includes('(') ? coords : `(${coords})`;
+                        if (coordStr.includes(centerCoords.trim()) || 
+                            formattedCenter.includes(coords)) {
+                            centerLabel = label;
+                            break;
+                        }
+                    }
+                    
+                    // 解析旋转角度（如果有）
+                    let rotationAngle = 0;
+                    let rotationCenter = null;
+                    const rotateMatch = options.match(/rotate around=\{([^:]+):\(([^)]+)\)\}/);
+                    
+                    if (rotateMatch) {
+                        // 提取旋转角度
+                        rotationAngle = parseFloat(rotateMatch[1]);
+                        if (shouldRound) {
+                            rotationAngle = roundToThreeDecimals(rotationAngle);
+                        }
+                        
+                        // 提取旋转中心坐标
+                        const rotateCenterCoords = rotateMatch[2];
+                        const formattedRotateCenter = formatCoordinate(`(${rotateCenterCoords})`, shouldRound);
+                        
+                        // 查找旋转中心的标签
+                        for (const [label, coords] of pointMap) {
+                            const coordStr = coords.includes('(') ? coords : `(${coords})`;
+                            if (coordStr.includes(rotateCenterCoords.trim()) || 
+                                formattedRotateCenter.includes(coords)) {
+                                rotationCenter = label;
+                                break;
+                            }
+                        }
+                        
+                        // 如果没有找到标签，使用格式化后的坐标
+                        if (!rotationCenter) {
+                            rotationCenter = formattedRotateCenter;
+                        }
+                    }
+                    
+                    // 转换线型
+                    const lineStyle = convertLineStyle(options);
+                    
+                    // 处理半径（四舍五入并保留单位）
+                    let finalXRadius = xRadiusStr;
+                    let finalYRadius = yRadiusStr;
+                    
+                    if (shouldRound && xRadiusStr && yRadiusStr) {
+                        // 提取数字部分
+                        const xRadiusNum = parseFloat(xRadiusStr);
+                        const yRadiusNum = parseFloat(yRadiusStr);
+                        
+                        // 保留单位（如果有）
+                        const xUnit = xRadiusStr.replace(/[0-9\.\-\s]/g, '');
+                        const yUnit = yRadiusStr.replace(/[0-9\.\-\s]/g, '');
+                        
+                        finalXRadius = roundToThreeDecimals(xRadiusNum) + xUnit;
+                        finalYRadius = roundToThreeDecimals(yRadiusNum) + yUnit;
+                    }
+                    
+                    // 创建椭圆对象
+                    const ellipseObj = {
+                        center: centerLabel ? `(${centerLabel})` : formattedCenter,
+                        xRadius: finalXRadius,
+                        yRadius: finalYRadius,
+                        lineStyle: lineStyle,
+                        originalCenter: centerCoords,
+                        originalRadii: radii,
+                        hasRotation: !!rotateMatch
+                    };
+                    
+                    // 如果有旋转信息，添加到对象中
+                    if (rotateMatch) {
+                        ellipseObj.rotationAngle = rotationAngle;
+                        ellipseObj.rotationCenter = rotationCenter ? `(${rotationCenter})` : formattedRotateCenter;
+                        ellipseObj.originalRotation = rotateMatch[0]; // 保留原始的rotate around字符串
+                    }
+        
+                    
+                    ellipses.push(ellipseObj);
+                });
+
+                // 角度标记正则表达式 - 匹配角度扇形绘制命令
+                const angleRegex = /\\draw\s*\[shift=\{\(([^,]+),([^)]+)\)\}[^\]]*\]\s*\(0,0\)\s*--\s*\(([^:]+):([^)]+)\)\s*arc\s*\(([^:]+):([^)]+):([^)]+)\)\s*--\s*cycle;/g;
+
+                // 提取角度标记
+                const angleMatches = [...code.matchAll(angleRegex)];
+                const angles = [];
+
+                angleMatches.forEach(match => {
+                    const centerX = match[1].trim();
+                    const centerY = match[2].trim();
+                    const startAngle = match[3].trim();
+                    const radius = match[4].trim();
+                    const startAngle2 = match[5].trim(); // 弧的起始角
+                    const endAngle = match[6].trim();    // 弧的结束角
+                    const radius2 = match[7].trim();     // 弧的半径
+                    
+                    // 格式化中心坐标
+                    const centerCoords = `(${centerX},${centerY})`;
+                    const formattedCenter = formatCoordinate(centerCoords, shouldRound);
+                    
+                    // 查找中心点对应的标签
+                    let centerLabel = null;
+                    for (const [label, coords] of pointMap) {
+                        const coordStr = coords.includes('(') ? coords : `(${coords})`;
+                        if (coordStr.includes(`${centerX},${centerY}`) || 
+                            formattedCenter.includes(coords)) {
+                            centerLabel = label;
+                            break;
+                        }
+                    }
+                    
+                    // 处理角度值（四舍五入）
+                    let finalStartAngle = startAngle;
+                    let finalEndAngle = endAngle;
+                    let finalRadius = radius;
+                    
+                    if (shouldRound) {
+                        finalStartAngle = roundToThreeDecimals(parseFloat(startAngle));
+                        finalEndAngle = roundToThreeDecimals(parseFloat(endAngle));
+                        finalRadius = roundToThreeDecimals(parseFloat(radius));
+                    }
+                    
+                    // 创建角度对象
+                    const angleObj = {
+                        center: centerLabel ? `(${centerLabel})` : formattedCenter,
+                        startAngle: finalStartAngle,
+                        endAngle: finalEndAngle,
+                        radius: finalRadius,
+                        originalCenter: centerCoords
+                    };
+                    
+                    angles.push(angleObj);
+                });
+                
+                let result = '\\begin{tikzpicture}[scale=1]\n';
+                
+                if (pointMap.size > 0) {
+                    result += '  % 坐标点定义\n';
+                    for (const [label, coords] of pointMap) {
+                        result += `  \\coordinate (${label}) at ${coords.includes('(') ? coords : `(${coords})`};\n`;
+                    }
+                    result += '\n';
+                }
+
+                if (functionPlotsResult.hasFunctions) {
+                    result += '  % 函数图像\n';
+                    result += functionPlotsResult.scopeCode + '\n';
+                }
+              
+                if (lineMatches.length > 0 || circles.length > 0 || arcs.length > 0 || ellipses.length > 0|| angles.length > 0 || angleLabels.length > 0 || sectors.length > 0) {
+                    result += '  % 几何元素\n';
+
+                    // 如果有角度标记，输出角度标记 - 放在最开始，因为它们是背景
+                    if (angles.length > 0) {
+                        result += '  % 角度\n';
+                        angles.forEach(angle => {
+                            result += `  \\fill [shift=${angle.center}, gray!30] (0,0) -- (${angle.startAngle}:${angle.radius}) arc (${angle.startAngle}:${angle.endAngle}:${angle.radius}) -- cycle;\n`;
+                        });
+                        if (lineMatches.length > 0 || circles.length > 0 || arcs.length > 0 || ellipses.length > 0) {
+                            result += '\n';
+                        }
+                    }
+
+                    if (sectors.length > 0) {
+                        result += '  % 扇形绘制\n';
+                        sectors.forEach(sector => {
+                            // 构建样式字符串
+                            let style = '';
+                            if (sector.lineStyle) {
+                                style = `[${sector.lineStyle}]`;
+                            }
+                            
+                            result += `  \\draw${style} [shift={(${sector.shiftX},${sector.shiftY})}] (0,0) -- plot[domain=${sector.startAngle}:${sector.endAngle}]({1*${sector.radius}*cos(\\x r)+0*${sector.radius}*sin(\\x r)},{0*${sector.radius}*cos(\\x r)+1*${sector.radius}*sin(\\x r)}) -- cycle;\n`;
+                        });
+                        
+                        // 如果后面还有其他几何元素，加一个换行
+                        if (lineMatches.length > 0) {
+                            result += '\n';
+                        }
+                    }
+
+
+                    // 如果有圆，输出圆
+                    if (circles.length > 0) {
+                        circles.forEach(circle => {
+                            // 如果圆有线型，添加到绘制命令中
+                            if (circle.lineStyle) {
+                                // 例如：\draw[dotted] (A) circle (1cm);
+                                result += `  \\draw[${circle.lineStyle}] ${circle.center} circle (${circle.radius});\n`;
+                            } else {
+                                // 没有线型，使用默认绘制
+                                result += `  \\draw ${circle.center} circle (${circle.radius});\n`;
+                            }
+                        });
+                        if (lineMatches.length > 0 || arcs.length > 0) {
+                            result += '\n';
+                        }
+                    }
+
+                    // 插入椭圆绘制代码 - 放在圆之后，弧之前
+                    if (ellipses.length > 0) {
+                        result += '  % 椭圆\n';
+                        ellipses.forEach(ellipse => {
+                            // 构建绘制选项
+                            const drawOptions = [];
+                            
+                            // 添加线型（如果有）
+                            if (ellipse.lineStyle) {
+                                drawOptions.push(ellipse.lineStyle);
+                            }
+                            
+                            // 添加旋转（如果有）
+                            if (ellipse.hasRotation) {
+                                drawOptions.push(`rotate around={${ellipse.rotationAngle}:${ellipse.rotationCenter}}`);
+                            }
+                            
+                            // 构建完整的绘制命令
+                            if (drawOptions.length > 0) {
+                                result += `  \\draw[${drawOptions.join(', ')}] ${ellipse.center} ellipse (${ellipse.xRadius} and ${ellipse.yRadius});\n`;
+                            } else {
+                                result += `  \\draw ${ellipse.center} ellipse (${ellipse.xRadius} and ${ellipse.yRadius});\n`;
+                            }
+                        });
+                        // 调整换行
+                        if (lineMatches.length > 0 || arcs.length > 0) {
+                            result += '\n';
+                        }
+                    }
+
+                    // 绘制圆弧 - 使用\x作为变量名，但不包含,variable=\x
+                    if (arcs.length > 0) {
+                        result += '  % 圆弧绘制\n';
+                        arcs.forEach(arc => {
+                            if (arc.style.trim()) {
+                                result += `  \\draw${arc.style} plot[domain=${arc.startAngle}:${arc.endAngle}]({1*${arc.radius}*cos(\\x r)+0*${arc.radius}*sin(\\x r)},{0*${arc.radius}*cos(\\x r)+1*${arc.radius}*sin(\\x r)});\n`;
+                            } else {
+                                result += `  \\draw plot[domain=${arc.startAngle}:${arc.endAngle}]({1*${arc.radius}*cos(\\x r)+0*${arc.radius}*sin(\\x r)},{0*${arc.radius}*cos(\\x r)+1*${arc.radius}*sin(\\x r)});\n`;
+                            }
+                        });
+                        if (lineMatches.length > 0) {
+                            result += '\n';
+                        }
+                    }
+                    
+                    const processedLines = new Set();
+
+                    // 坐标解析函数
+                    const parseCoords = (str) => {
+                        const match = str.match(/\(([^,]+),([^)]+)\)/);
+                        if (!match) return null;
+                        return {
+                            x: parseFloat(match[1]),
+                            y: parseFloat(match[2])
+                        };
+                    };
+
+                    lineMatches.forEach(match => {
+                        let style = match[1] || '';
+                        let coord1 = match[2];
+                        let coord2 = match[3];
+
+                        // 转换线型
+                        const convertedStyle = convertLineStyle(style);
+                        
+                        let label1 = null;
+                        let label2 = null;
+                        
+                        // 格式化目标坐标
+                        const targetCoord1 = formatCoordinate(`(${coord1})`, shouldRound);
+                        const targetCoord2 = formatCoordinate(`(${coord2})`, shouldRound);
+                        
+                        // 解析目标坐标
+                        const t1 = parseCoords(targetCoord1);
+                        const t2 = parseCoords(targetCoord2);
+                        
+                        // 数值比较匹配
+                        for (const [label, coords] of pointMap) {
+                            const pointCoordStr = coords.includes('(') ? coords : `(${coords})`;
+                            const p = parseCoords(pointCoordStr);
+                            
+                            // 比较第一个端点
+                            if (p && t1 && Math.abs(p.x - t1.x) < 0.001 && Math.abs(p.y - t1.y) < 0.001) {
+                                label1 = label;
+                            }
+                            // 比较第二个端点
+                            if (p && t2 && Math.abs(p.x - t2.x) < 0.001 && Math.abs(p.y - t2.y) < 0.001) {
+                                label2 = label;
+                            }
+                        }
+                        
+                        if (label1 && label2) {
+                            const lineKey = `${label1}-${label2}`;
+                            const reverseKey = `${label2}-${label1}`;
+                            
+                            if (!processedLines.has(lineKey) && !processedLines.has(reverseKey)) {
+                                if (convertedStyle) {
+                                    result += `  \\draw[${convertedStyle}] (${label1}) -- (${label2});\n`;
+                                } else {
+                                    result += `  \\draw (${label1}) -- (${label2});\n`;
+                                }
+                                processedLines.add(lineKey);
+                            }
+                        } else {
+                            const formattedCoord1 = formatCoordinate(`(${coord1})`, shouldRound);
+                            const formattedCoord2 = formatCoordinate(`(${coord2})`, shouldRound);
+                            if (convertedStyle) {
+                                result += `  \\draw[${convertedStyle}] ${formattedCoord1} -- ${formattedCoord2};\n`;
+                            } else {
+                                result += `  \\draw ${formattedCoord1} -- ${formattedCoord2};\n`;
+                            }
+                        }
+                    });
+                }
+
+                if (includePoints.checked && pointMap.size > 0) {
+                    result += '\n  % 点标记\n';
+                    for (const [label, coords] of pointMap) {
+                        result += `  \\draw[fill=black] (${label}) circle (1pt);\n`;
+                    }
+                }
+                
+                if (includeLabels.checked && pointMap.size > 0) {
+                    result += '\n  % 点标签\n';
+                    
+                    // 收集所有点的坐标用于智能位置判断
+                    const allPointsData = [];
+                    for (const [label, coords] of pointMap) {
+                        // 解析坐标字符串
+                        const match = coords.match(/\(?([^,]+),([^)]+)\)?/);
+                        if (match) {
+                            const x = parseFloat(match[1]);
+                            const y = parseFloat(match[2]);
+                            allPointsData.push({ 
+                                label, 
+                                x, 
+                                y 
+                            });
+                        }
+                    }
+                    
+                    // 为每个点生成标签
+                    for (const point of allPointsData) {
+                        const position = getSmartLabelPosition(point.x, point.y, allPointsData);
+                        result += `  \\node [${position}] at (${point.label}) {$${point.label}$};\n`;
+                    }
+                }
+
+                if (angleLabels.length > 0) {
+                    result += '\n  % 角度标签\n';
+                    angleLabels.forEach(label => {
+                        // 清理颜色属性，并将\textrm{\degre}替换为^{\circ}
+                        result += `  \\draw ${label.coords} node {$${label.content}^{\\circ}$};\n`;
+                    });
+                }
+
+                // 添加文本标签输出
+                if (textLabels.length > 0) {
+                    result += '\n  % 文本标签\n';
+                    textLabels.forEach(label => {
+                        // 完整保留原始格式，只对坐标进行四舍五入
+                        result += `  \\draw ${label.coords} node[${label.options}] {${label.content}};\n`;
+                    });
+                }
+                
+                result += '\\end{tikzpicture}';
+                
+                return result;
+                
+            } catch (error) {
+                console.error('清理出错:', error);
+                throw new Error('清理失败: ' + error.message);
+            }
+        }
+            
+            cleanBtn.addEventListener('click', () => {
+                const input = inputCode.value.trim();
+                if (!input) {
+                    showNotification('请输入要清理的TikZ代码', true);
+                    return;
+                }
+                
+                try {
+                    const cleanedCode = cleanTikZCode(input);
+                    outputCode.value = cleanedCode;
+                    showNotification('代码转换完成');
+                } catch (error) {
+                    showNotification(error.message, true);
+                }
+            });
+            
+            copyBtn.addEventListener('click', async () => {
+                const text = outputCode.value;
+                if (!text) {
+                    showNotification('没有可复制的内容', true);
+                    return;
+                }
+                
+                try {
+                    await navigator.clipboard.writeText(text);
+                    showNotification('代码已复制');
+                } catch (error) {
+                    outputCode.select();
+                    document.execCommand('copy');
+                    showNotification('代码已复制');
+                }
+            });
+            
+            clearBtn.addEventListener('click', () => {
+                inputCode.value = '';
+                outputCode.value = '';
+                showNotification('已清空');
+            });
+            
+            shareBtn.addEventListener('click', async () => {
+                const currentUrl = window.location.href;
+                
+                try {
+                    await navigator.clipboard.writeText(currentUrl);
+                    showNotification('页面链接已复制到剪贴板');
+                } catch (error) {
+                    const tempInput = document.createElement('textarea');
+                    tempInput.value = currentUrl;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    showNotification('页面链接已复制到剪贴板');
+                }
+            });
+            setTimeout(() => {
+                cleanBtn.click();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

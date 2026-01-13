@@ -1,0 +1,247 @@
+\documentclass[12pt, a4paper, oneside]{book} % 定义文档类和选项
+\usepackage[UTF8]{ctex} % 引入支持中文的宏包
+
+\usepackage[headheight=15pt,   % 页眉高度（根据实际页眉内容调整）
+    footskip=30pt,     % 页脚基线到版心底部的距离
+    top=2.5cm,         % 上边距（包含页眉）
+    bottom=2.5cm,      % 下边距（包含页脚）
+    left=2.5cm,        % 左边距
+    right=2.5cm,
+    includeheadfoot]{geometry}
+
+\usepackage{fancyhdr}  % 导入 fancyhdr 宏包
+
+% 设置页眉和页脚
+\pagestyle{fancy}
+\fancyhf{}  % 清除所有默认页眉页脚内容
+
+\fancyhead[L]{Q群~1029757969}
+
+\fancyfoot[R]{B站id 礼貌小猫咪}
+
+
+\renewcommand{\headrulewidth}{0pt} 
+
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+\usepackage{tkz-euclide} %为几何画图设计的宏包
+\usetikzlibrary{calc} % 坐标计算功能
+\usetikzlibrary{intersections} % 交点计算功能
+\usetikzlibrary{arrows.meta} %箭头
+\tikzset{>={Stealth[scale=1.4]}} %燕尾箭头
+\usepackage[most]{tcolorbox}
+\usepackage[svgnames]{xcolor}
+
+\usepackage{titlesec} 
+\titleformat{\chapter}[display]
+{\normalfont\LARGE\bfseries\raggedright}{\chaptertitlename\ \thechapter}{10pt}{\Large}
+
+\titleformat{\section}
+{\normalfont\large\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\bfseries}{\thesubsection}{1em}{}
+
+
+\title{\LaTeX{} GeoTikTrim \thanks{项目地址: \url{https://gitee.com/Jack0920/ggb-tikz-code-filter}}} % 
+\author{Jack}
+\date{\today}
+\begin{document} 
+\maketitle
+
+\tableofcontents
+
+\newpage
+\chapter{version 0.0.4}
+\newpage
+\section{函数以及文本标签}
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A) at (-2.079,1.994);
+  \coordinate (B) at (-1.193,1.591);
+  \coordinate (C) at (-2.036,1.418);
+  \coordinate (D) at (-1.61,0.852);
+  \coordinate (E) at (-0.846,1.199);
+  \coordinate (F) at (0.438,2.328);
+  \coordinate (G) at (1.629,2.653);
+  \coordinate (H) at (0.672,1.857);
+
+  % 函数图像
+  \begin{scope}
+    \clip(-5.273,-1.988) rectangle (7.951,7.868);
+    \draw[dash dot,smooth,samples=500,domain=-5.273:5.951] plot(\x,{sin(((\x))*180/pi)});
+    \draw[dotted,smooth,samples=500,domain=-5.273:-0.3] plot(\x,{2/(\x)});
+    \draw[dotted,smooth,samples=500,domain=0.3:5.951] plot(\x,{2/(\x)});
+    \draw[smooth,samples=500,domain=0.001:5.951] plot(\x,{ln((\x))});
+    \draw[smooth,samples=500,domain=0.001:5.951] plot(\x,{ln((\x))/ln(2)});
+    \draw[smooth,samples=500,rotate around={0:(0,0)},domain=-4:4] plot(\x,{(\x)^2/2/0.5});
+  \end{scope}
+
+  % 几何元素
+  \draw (D) circle (0.839cm);
+
+  % 椭圆
+  \draw[rotate around={-24.471:((-1.636,1.793))}] (-1.636,1.793) ellipse (0.719cm and 0.53cm);
+
+  \draw (F) -- (G);
+  \draw (G) -- (H);
+  \draw (H) -- (F);
+
+  % 点标记
+  \draw[fill=black] (A) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C) circle (1pt);
+  \draw[fill=black] (D) circle (1pt);
+  \draw[fill=black] (E) circle (1pt);
+  \draw[fill=black] (F) circle (1pt);
+  \draw[fill=black] (G) circle (1pt);
+  \draw[fill=black] (H) circle (1pt);
+
+  % 点标签
+  \node [above right] at (A) {$A$};
+  \node [above right] at (B) {$B$};
+  \node [above right] at (C) {$C$};
+  \node [above right] at (D) {$D$};
+  \node [above right] at (E) {$E$};
+  \node [above right] at (F) {$F$};
+  \node [above right] at (G) {$G$};
+  \node [above right] at (H) {$H$};
+
+  % 文本标签
+  \draw (-0.652,1.046) node[anchor=north west] {add text label and function plot};
+  \draw (-0.652,1.046) node[anchor=north west,shift={(0,-2)}] {add text label and function plot};
+  \draw (0.238,1.835) node[anchor=north west] {add};
+  \draw (-0.692,2.077) node[anchor=north west] {hello world};
+  \draw (-3.19,0.571) node[anchor=north west] {this is a label};
+  \draw (-2.978,2.27) node[anchor=north west] {abc};
+  \draw (-0.207,0.571) node[anchor=north west] {ABC};
+\end{tikzpicture}
+
+\chapter{version 0.0.5}
+\newpage
+
+\section{优化点标签位置}
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A) at (-1.611,2.986);
+  \coordinate (B) at (-2.03,0.475);
+  \coordinate (C) at (2.909,0.458);
+  \coordinate (D) at (1.854,2.902);
+  \coordinate (E) at (-2.448,2.132);
+  \coordinate (F) at (4.315,1.881);
+  \coordinate (G) at (3.11,3.388);
+  \coordinate (H) at (6,3);
+  \coordinate (I) at (5.604,2.249);
+  \coordinate (J) at (-0.64,5.062);
+  \coordinate (K) at (-0.724,3.823);
+  \coordinate (L) at (4.968,3.823);
+  \coordinate (M) at (3.511,5.882);
+
+  % 几何元素
+  \draw (D) circle (2cm);
+
+  % 椭圆
+  \draw[rotate around={-7.639:((4.555,3.194))}] (4.555,3.194) ellipse (1.795cm and 1.047cm);
+
+  \draw (A) -- (B);
+  \draw (B) -- (C);
+  \draw (C) -- (A);
+  \draw (E) -- (F);
+  \draw (J) -- (K);
+  \draw (K) -- (L);
+  \draw (L) -- (M);
+  \draw (M) -- (J);
+
+  % 点标记
+  \draw[fill=black] (A) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C) circle (1pt);
+  \draw[fill=black] (D) circle (1pt);
+  \draw[fill=black] (E) circle (1pt);
+  \draw[fill=black] (F) circle (1pt);
+  \draw[fill=black] (G) circle (1pt);
+  \draw[fill=black] (H) circle (1pt);
+  \draw[fill=black] (I) circle (1pt);
+  \draw[fill=black] (J) circle (1pt);
+  \draw[fill=black] (K) circle (1pt);
+  \draw[fill=black] (L) circle (1pt);
+  \draw[fill=black] (M) circle (1pt);
+
+  % 点标签
+  \node [below left] at (A) {$A$};
+  \node [below] at (B) {$B$};
+  \node [below] at (C) {$C$};
+  \node [below right] at (D) {$D$};
+  \node [left] at (E) {$E$};
+  \node [below right] at (F) {$F$};
+  \node [above right] at (G) {$G$};
+  \node [right] at (H) {$H$};
+  \node [below right] at (I) {$I$};
+  \node [above left] at (J) {$J$};
+  \node [above left] at (K) {$K$};
+  \node [above right] at (L) {$L$};
+  \node [above] at (M) {$M$};
+\end{tikzpicture}
+
+\newpage
+\section{扇形}
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A) at (-2.331,3.773);
+  \coordinate (B) at (-2.733,1.915);
+  \coordinate (C) at (-0.707,2.752);
+  \coordinate (D) at (1.754,3.94);
+  \coordinate (E) at (-1.544,-2.17);
+  \coordinate (F) at (1.67,-3.024);
+  \coordinate (G) at (6.876,3.555);
+  \coordinate (H) at (2.172,2.082);
+  \coordinate (I) at (3.679,1.278);
+  \coordinate (J) at (0.147,4.878);
+  \coordinate (K) at (-0.423,4.191);
+  \coordinate (L) at (0.9,4.493);
+
+  % 几何元素
+  % 扇形绘制
+  \draw[dashed] [shift={(-2.331,3.773)}] (0,0) -- plot[domain=4.499:5.722]({1*1.901*cos(\x r)+0*1.901*sin(\x r)},{0*1.901*cos(\x r)+1*1.901*sin(\x r)}) -- cycle;
+  \draw[dotted] [shift={(1.754,3.94)}] (0,0) -- plot[domain=4.217:4.7]({1*6.943*cos(\x r)+0*6.943*sin(\x r)},{0*6.943*cos(\x r)+1*6.943*sin(\x r)}) -- cycle;
+  \draw[dash dot] [shift={(4.157,3.99)}] (0,0) -- plot[domain=3.907:6.125]({1*2.753*cos(\x r)+0*2.753*sin(\x r)},{0*2.753*cos(\x r)+1*2.753*sin(\x r)}) -- cycle;
+  \draw [shift={(0.147,4.878)}] (0,0) -- plot[domain=4.02:5.811]({1*0.892*cos(\x r)+0*0.892*sin(\x r)},{0*0.892*cos(\x r)+1*0.892*sin(\x r)}) -- cycle;
+
+  \draw (G) -- (H);
+  \draw (H) -- (I);
+  \draw (I) -- (G);
+
+  % 点标记
+  \draw[fill=black] (A) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C) circle (1pt);
+  \draw[fill=black] (D) circle (1pt);
+  \draw[fill=black] (E) circle (1pt);
+  \draw[fill=black] (F) circle (1pt);
+  \draw[fill=black] (G) circle (1pt);
+  \draw[fill=black] (H) circle (1pt);
+  \draw[fill=black] (I) circle (1pt);
+  \draw[fill=black] (J) circle (1pt);
+  \draw[fill=black] (K) circle (1pt);
+  \draw[fill=black] (L) circle (1pt);
+
+  % 点标签
+  \node [above left] at (A) {$A$};
+  \node [left] at (B) {$B$};
+  \node [above left] at (C) {$C$};
+  \node [above left] at (D) {$D$};
+  \node [below left] at (E) {$E$};
+  \node [below] at (F) {$F$};
+  \node [right] at (G) {$G$};
+  \node [above right] at (H) {$H$};
+  \node [above right] at (I) {$I$};
+  \node [above] at (J) {$J$};
+  \node [above left] at (K) {$K$};
+  \node [above left] at (L) {$L$};
+\end{tikzpicture}
+
+
+
+\end{document}
