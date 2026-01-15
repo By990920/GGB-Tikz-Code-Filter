@@ -60,7 +60,7 @@
             color: #666;
             font-size: 12px;
             font-family: 'Consolas', 'Monaco', monospace;
-            margin: 5px 0 15px 0;
+            margin: 5px 0 0px 0;
             padding: 0;
             opacity: 0.7;
             text-align: left;
@@ -577,12 +577,15 @@
 </head>
 <body>
     <div class="container">
-        <div id="uptime-timer" class="uptime-timer">
-            🕒 已运行: <span id="uptime-display">0d 0h 0m 0s</span>
-        </div>
         <div class="memorial-note">
             🕯️谨此怀念方大同先生
         </div>
+
+        <div id="uptime-timer" class="uptime-timer">
+            <p>📅 2026.1.15 版本</p>
+            <p>🕒 已运行: <span id="uptime-display">0d 0h 0m 0s</span></p>
+        </div>
+        
         <div class="main-content">
             <div class="input-section">
                 <h2>输入GGB代码</h2>
@@ -769,10 +772,21 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="version-item">
+                        <span class="version-date">2026.01.15</span>
+                        <h4 class="version-title">版本 0.0.6
+                            <span class="status-badge status-released">已发布</span>
+                        </h4>
+                        <ul class="version-features">
+                            <li>修正含下标点标签匹配不到的问题</li>
+                            <li>新增绘制贝塞尔曲线</li>
+                        </ul>
+                    </div>
                     
                     <div class="version-item">
                         <span class="version-date">即将发布</span>
-                        <h4 class="version-title">版本 0.0.6 
+                        <h4 class="version-title">版本 0.0.7 
                             <span class="status-badge status-developing">开发中</span>
                         </h4>
                         <ul class="version-features">
@@ -1162,6 +1176,87 @@
                 }
             }
 
+            /**
+             * 提取贝塞尔曲线的参数方程
+             * @param {string} code - TikZ代码
+             * @param {boolean} shouldRound - 是否四舍五入系数
+             * @returns {Object} 提取结果
+             */
+             function extractParametricPlots(code) {
+                try {
+                    // 匹配参数方程曲线：\draw[options] plot[parametric] function{x(t), y(t)};
+                    const parametricRegex = /\\draw\[([^\]]*)\]\s*plot\[parametric\]\s*function\{([^}]+)\};/g;
+                    const matches = [...code.matchAll(parametricRegex)];
+                    const plots = [];
+                    
+                    const shouldRound = roundCoordinates.checked;
+                    
+                    matches.forEach(match => {
+                        const options = match[1];
+                        const functionStr = match[2];
+                        
+                        // 分离x(t)和y(t)表达式
+                        const commaMatch = functionStr.match(/([^,]+),([^,]+)/);
+                        if (!commaMatch) return;
+                        
+                        let xExpr = commaMatch[1].trim();
+                        let yExpr = commaMatch[2].trim();
+                        
+                        // 格式化表达式：四舍五入系数
+                        if (shouldRound) {
+                            // 匹配浮点数并四舍五入
+                            xExpr = xExpr.replace(/(\d+\.\d{4,})/g, (match) => {
+                                return roundToThreeDecimals(parseFloat(match)).toString();
+                            });
+                            yExpr = yExpr.replace(/(\d+\.\d{4,})/g, (match) => {
+                                return roundToThreeDecimals(parseFloat(match)).toString();
+                            });
+                        }
+                        
+                        // 简化幂次表示：t**(3) -> \t^3, (1-t)**(3) -> (1-\t)^3
+                        // 注意：这里要转义t变量，所以将t替换为\t
+                        xExpr = xExpr.replace(/t\*\*\((\d+)\)/g, '\\t^$1');
+                        xExpr = xExpr.replace(/\(1-t\)\*\*\((\d+)\)/g, '(1-\\t)^$1');
+                        yExpr = yExpr.replace(/t\*\*\((\d+)\)/g, '\\t^$1');
+                        yExpr = yExpr.replace(/\(1-t\)\*\*\((\d+)\)/g, '(1-\\t)^$1');
+                        
+                        // 替换所有的t变量为\t（在表达式中）
+                        // 注意：要确保不替换到系数中的t（如27.513），所以只替换作为独立变量的t
+                        // 使用正则表达式匹配单独的t（前面是空格、运算符或括号，后面是运算符、空格或括号）
+                        xExpr = xExpr.replace(/([ (+\-*/,])t(?!\w)/g, '$1\\t');
+                        yExpr = yExpr.replace(/([ (+\-*/,])t(?!\w)/g, '$1\\t');
+                        
+                        // 处理开头的t（如果表达式以t开头）
+                        xExpr = xExpr.replace(/^t(?!\w)/, '\\t');
+                        yExpr = yExpr.replace(/^t(?!\w)/, '\\t');
+                        
+                        // 简化乘号表示：*(1-t)* -> *(1-t)*（保持不变）
+                        // 但我们可以移除不必要的*号吗？不，LaTeX需要乘号
+                        
+                        // 转换线型
+                        const lineStyle = convertLineStyle(options);
+                        
+                        plots.push({
+                            original: match[0],
+                            options: options,
+                            xExpression: xExpr,
+                            yExpression: yExpr,
+                            lineStyle: lineStyle
+                        });
+                    });
+                    
+                    return {
+                        hasParametricPlots: plots.length > 0,
+                        plots: plots
+                    };
+                } catch (error) {
+                    console.error('提取贝塞尔曲线出错:', error);
+                    return { hasParametricPlots: false, plots: [] };
+                }
+            }
+
+            
+
             // 主要处理函数
             function cleanTikZCode(code) {
             try {
@@ -1170,8 +1265,10 @@
                     throw new Error('未找到tikzpicture环境');
                 }
                 
+                // 点的匹配
                 const pointRegex = /\\draw\s*\[fill=[^\]]+\]\s*\(([^)]+)\)\s*circle\s*\(([^)]+)\);/g;
-                const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$([A-Za-z]+)\$\}/g;
+                // 点标签的匹配
+                const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$([^$]+(?:\{[^}]*\})?[^$]*)\$\}/g;
                 
                 const pointMap = new Map();
                 const pointMatches = [...code.matchAll(pointRegex)];
@@ -1196,7 +1293,11 @@
                     }
                 });
 
+                // 函数
                 const functionPlotsResult = extractFunctionPlots(code);
+
+                // 贝塞尔曲线
+                const parametricPlotResult = extractParametricPlots(code);
 
                 // 处理文本标签
                 const textLabelRegex = /\\draw\s*\(([^)]+)\)\s*node\s*\[([^\]]+)\]\s*\{([^}]+)\};/g;
@@ -1557,6 +1658,17 @@
                 if (functionPlotsResult.hasFunctions) {
                     result += '  % 函数图像\n';
                     result += functionPlotsResult.scopeCode + '\n';
+                }
+
+                // 贝塞尔曲线输出
+                if (parametricPlotResult.hasParametricPlots) {
+                    result += '  % 贝塞尔曲线\n';
+                    parametricPlotResult.plots.forEach(plot => {
+                        const lineStyleStr = plot.lineStyle ? `[${plot.lineStyle}, smooth, samples=100, domain=0:1, variable=\\t]` : '[smooth, samples=100, domain=0:1, variable=\\t]';
+                        result += `  \\draw${lineStyleStr} plot\n`;
+                        result += `    ({${plot.xExpression}},\n`;
+                        result += `     {${plot.yExpression}});\n\n`;
+                    });
                 }
               
                 if (lineMatches.length > 0 || circles.length > 0 || arcs.length > 0 || ellipses.length > 0|| angles.length > 0 || angleLabels.length > 0 || sectors.length > 0) {

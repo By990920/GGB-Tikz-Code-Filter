@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.12.12)  13 JAN 2026 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.12.12)  15 JAN 2026 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -281,4 +281,810 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count289
 \Field@Width=\dimen155
 \Fld@charsize=\dimen156
-Package hyperref Info: Hyper figures OFF on inpu
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+ (D:\Books\MikTex\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (D:\Books\MikTex\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2024-05-23 v7.01i Hyperref driver for pdfTeX
+ (D:\Books\MikTex\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+ (D:\Books\MikTex\tex/latex/rerunfilecheck\rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+ (D:\Books\MikTex\tex/generic/uniquecounter\uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
+)
+\Hy@SectionHShift=\skip61
+) (D:\Books\MikTex\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+ (D:\Books\MikTex\tex/latex/bookmark\bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
+\BKM@id=\count295
+)) (D:\Books\MikTex\tex/latex/tkz-euclide\tkz-euclide.sty
+2025/09/17 5.11c tkz-euclide.sty
+Package: tkz-euclide  2025/09/17 5.11c for pure Euclidean Geometry 
+(D:\Books\MikTex\tex/latex/pgf/frontendlayer\tikz.sty (D:\Books\MikTex\tex/latex/pgf/basiclayer\pgf.sty (D:\Books\MikTex\tex/latex/pgf/utilities\pgfrcs.sty (D:\Books\MikTex\tex/generic/pgf/utilities\pgfutil-common.tex
+\pgfutil@everybye=\toks21
+\pgfutil@tempdima=\dimen157
+\pgfutil@tempdimb=\dimen158
+) (D:\Books\MikTex\tex/generic/pgf/utilities\pgfutil-latex.def
+\pgfutil@abb=\box55
+) (D:\Books\MikTex\tex/generic/pgf/utilities\pgfrcs.code.tex (D:\Books\MikTex\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/latex/pgf/basiclayer\pgfcore.sty (D:\Books\MikTex\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (D:\Books\MikTex\tex/latex/graphics\graphics.sty
+Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (D:\Books\MikTex\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (D:\Books\MikTex\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (D:\Books\MikTex\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
+) (D:\Books\MikTex\tex/latex/pgf/systemlayer\pgfsys.sty (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/utilities\pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks22
+\pgfkeys@temptoks=\toks23
+ (D:\Books\MikTex\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks24
+))
+\pgf@x=\dimen161
+\pgf@y=\dimen162
+\pgf@xa=\dimen163
+\pgf@ya=\dimen164
+\pgf@xb=\dimen165
+\pgf@yb=\dimen166
+\pgf@xc=\dimen167
+\pgf@yc=\dimen168
+\pgf@xd=\dimen169
+\pgf@yd=\dimen170
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count296
+\c@pgf@countb=\count297
+\c@pgf@countc=\count298
+\c@pgf@countd=\count299
+\t@pgf@toka=\toks25
+\t@pgf@tokb=\toks26
+\t@pgf@tokc=\toks27
+\pgf@sys@id@count=\count300
+ (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+ (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+))) (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count301
+\pgfsyssoftpath@bigbuffer@items=\count302
+) (D:\Books\MikTex\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (D:\Books\MikTex\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+ (D:\Books\MikTex\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+ (D:\Books\MikTex\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/math\pgfmath.code.tex (D:\Books\MikTex\tex/generic/pgf/math\pgfmathutil.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathparser.code.tex
+\pgfmath@dimen=\dimen171
+\pgfmath@count=\count303
+\pgfmath@box=\box56
+\pgfmath@toks=\toks28
+\pgfmath@stack@operand=\toks29
+\pgfmath@stack@operation=\toks30
+) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathcalc.code.tex) (D:\Books\MikTex\tex/generic/pgf/math\pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count304
+)) (D:\Books\MikTex\tex/generic/pgf/math\pgfint.code.tex) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen172
+\pgf@picmaxx=\dimen173
+\pgf@picminy=\dimen174
+\pgf@picmaxy=\dimen175
+\pgf@pathminx=\dimen176
+\pgf@pathmaxx=\dimen177
+\pgf@pathminy=\dimen178
+\pgf@pathmaxy=\dimen179
+\pgf@xx=\dimen180
+\pgf@xy=\dimen181
+\pgf@yx=\dimen182
+\pgf@yy=\dimen183
+\pgf@zx=\dimen184
+\pgf@zy=\dimen185
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen186
+\pgf@path@lasty=\dimen187
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen188
+\pgf@shorten@start@additional=\dimen189
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box57
+\pgf@hbox=\box58
+\pgf@layerbox@main=\box59
+\pgf@picture@serial@count=\count305
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen190
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen191
+\pgf@pt@y=\dimen192
+\pgf@pt@temp=\dimen193
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen194
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen195
+\pgf@sys@shading@range@num=\count306
+\pgf@shadingcount=\count307
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box60
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (D:\Books\MikTex\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box61
+) (D:\Books\MikTex\tex/generic/pgf/modules\pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen196
+\pgf@nodesepend=\dimen197
+) (D:\Books\MikTex\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (D:\Books\MikTex\tex/latex/pgf/utilities\pgffor.sty (D:\Books\MikTex\tex/latex/pgf/utilities\pgfkeys.sty (D:\Books\MikTex\tex/generic/pgf/utilities\pgfkeys.code.tex)) (D:\Books\MikTex\tex/latex/pgf/math\pgfmath.sty (D:\Books\MikTex\tex/generic/pgf/math\pgfmath.code.tex)) (D:\Books\MikTex\tex/generic/pgf/utilities\pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen198
+\pgffor@skip=\dimen199
+\pgffor@stack=\toks31
+\pgffor@toks=\toks32
+)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count308
+\pgfplotmarksize=\dimen256
+)
+\tikz@lastx=\dimen257
+\tikz@lasty=\dimen258
+\tikz@lastxsaved=\dimen259
+\tikz@lastysaved=\dimen260
+\tikz@lastmovetox=\dimen261
+\tikz@lastmovetoy=\dimen262
+\tikzleveldistance=\dimen263
+\tikzsiblingdistance=\dimen264
+\tikz@figbox=\box62
+\tikz@figbox@bg=\box63
+\tikz@tempbox=\box64
+\tikz@tempbox@bg=\box65
+\tikztreelevel=\count309
+\tikznumberofchildren=\count310
+\tikznumberofcurrentchild=\count311
+\tikz@fig@count=\count312
+ (D:\Books\MikTex\tex/generic/pgf/modules\pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count313
+\pgfmatrixcurrentcolumn=\count314
+\pgf@matrix@numberofcolumns=\count315
+)
+\tikz@expandcount=\count316
+ (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryangles.code.tex
+File: tikzlibraryangles.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\arrowsize=\dimen265
+)) (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen266
+\pgfarrowlength=\dimen267
+\pgfarrowwidth=\dimen268
+\pgfarrowlinewidth=\dimen269
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@layerbox@background=\box66
+\pgf@layerboxsaved@background=\box67
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (D:\Books\MikTex\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen270
+\pgfdecoratedremainingdistance=\dimen271
+\pgfdecoratedinputsegmentcompleteddistance=\dimen272
+\pgfdecoratedinputsegmentremainingdistance=\dimen273
+\pgf@decorate@distancetomove=\dimen274
+\pgf@decorate@repeatstate=\count317
+\pgfdecorationsegmentamplitude=\dimen275
+\pgfdecorationsegmentlength=\dimen276
+)
+\tikz@lib@dec@box=\box68
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.markings.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.markings.code.tex)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.shapes.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.shapes.code.tex)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.text.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.text.code.tex
+\pgf@lib@dec@text@box=\box69
+)
+\tikz@lib@dec@te@box=\box70
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryintersections.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryintersections.code.tex (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryfpu.code.tex)
+\pgf@intersect@solutions=\count318
+)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymath.code.tex (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfpu.code.tex)
+\tikz@math@for@depth=\count319
+\tikz@math@dimen=\dimen277
+\tikz@math@toks=\toks33
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarythrough.code.tex
+File: tikzlibrarythrough.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (D:\Books\MikTex\tex/latex/l3packages/xfp\xfp.sty
+Package: xfp 2024-05-08 L3 Floating point unit
+) (D:\Books\MikTex\tex/latex/xpatch\xpatch.sty
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+ (D:\Books\MikTex\tex/latex/l3packages/xparse\xparse.sty
+Package: xparse 2024-05-08 L3 Experimental document command parser
+))
+\tkzRadius=\dimen278
+\tkzLength=\dimen279
+\tkz@radi=\dimen280
+\tkz@ax=\dimen281
+\tkz@ay=\dimen282
+\tkz@bx=\dimen283
+\tkz@by=\dimen284
+\tkz@cx=\dimen285
+\tkz@cy=\dimen286
+\tkz@dx=\dimen287
+\tkz@dy=\dimen288
+\tkz@cntmk=\count320
+
+Local configuration file tkz-euclide.cfg found and used
+(D:\Books\MikTex\tex/latex/tkz-euclide\tkz-euclide.cfg
+2025/09/17 5.11c tkz-euclide.cfg
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-base.tex
+2025/09/17 5.11c tkz-tools-eu-base.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-utilities.tex
+2025/09/17 5.11c tkz-tools-eu-utilities.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-BB.tex
+2025/09/17 5.11c tkz-obj-eu-BB.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-grids.tex
+2025/09/17 5.11c tkz-obj-eu-grids.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/libs\tkz-lib-eu-marks.tex
+2025/09/17 5.11c tkz-lib-eu-marks.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-text.tex
+2025/09/17 5.11c tkz-tools-eu-text.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/libs\tkz-lib-eu-shape.tex
+2025/09/17 5.11c tkz-lib-eu-shape.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-axesmin.tex
+2025/09/17 5.11c tkz-obj-eu-axesmin
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-colors.tex
+2025/09/17 5.11c tkz-tools-eu-colors
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points.tex
+2025/09/17 5.11c tkz-obj-eu-points.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-points.tex
+2025/09/17 5.11c tkz-draw-eu-points.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points.tex
+2025/09/17 5.11c tkz-obj-eu-points.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points-by.tex
+2025/09/17 5.11c tkz-tools-eu-points-by.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-math.tex
+2025/09/17 5.11c tkz-tools-eu-math.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-intersections.tex
+2025/09/17 5.11c tkz-tools-eu-intersections.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points-with.tex
+2025/09/17 5.11c tkz-obj-eu-points-with.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points-spc.tex
+2025/09/17 5.11c tkz-obj-el-points.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/tools\tkz-tools-eu-angles.tex
+2025/09/17 5.11c tkz-tools-eu-angles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-circles.tex
+2025/09/17 5.11c tkz-obj-eu-circles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-circles-by.tex
+2025/09/17 5.11c tkz-obj-eu-circles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-points-rnd.tex
+2025/09/17 5.11c tkz-obj-eu-points-rnd.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-lines.tex
+2025/09/17 5.11c tkz-obj-eu-lines.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-polygons.tex
+2025/09/17 5.11c tkz-obj-eu-polygons.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/obj\tkz-obj-eu-triangles.tex
+2025/09/17 5.11c tkz-obj-eu-triangles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-lines.tex
+2025/09/17 5.11c tkz-obj-eu-draw-lines.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-circles.tex
+2025/09/17 5.11c tkz-obj-eu-draw-circles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-ellipses.tex
+2025/09/17 5.11c tkz-obj-eu-draw-ellipses.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-polygons.tex
+2025/09/17 5.11c tkz-obj-eu-polygons.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-arcs.tex
+2025/09/17 5.11c tkz-tool-eu-arcs.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-angles.tex
+2025/09/17 5.11c tkz-tool-eu-angles.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-sectors.tex
+2025/09/17 5.11c tkz-obj-eu-sectors.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-compass.tex
+2025/09/17 5.11c tkz-obj-eu-compass.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-show.tex
+2025/09/17 5.11c tkz-obj-eu-show.tex
+) (D:\Books\MikTex\tex/latex/tkz-euclide/drawings\tkz-draw-eu-protractor.tex
+2025/09/17 5.11c tkz-obj-eu-protractor.tex
+)) (D:\Books\MikTex\tex/latex/tcolorbox\tcolorbox.sty
+Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
+ (D:\Books\MikTex\tex/latex/tools\verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks34
+\verbatim@line=\toks35
+\verbatim@in@stream=\read3
+) (D:\Books\MikTex\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+ (D:\Books\MikTex\tex/latex/trimspaces\trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks36
+)
+\tcb@titlebox=\box71
+\tcb@upperbox=\box72
+\tcb@lowerbox=\box73
+\tcb@phantombox=\box74
+\c@tcbbreakpart=\count321
+\c@tcblayer=\count322
+\c@tcolorbox@number=\count323
+\l__tcobox_tmpa_box=\box75
+\l__tcobox_tmpa_dim=\dimen289
+\tcb@temp=\box76
+\tcb@temp=\box77
+\tcb@temp=\box78
+\tcb@temp=\box79
+ (D:\Books\MikTex\tex/latex/tcolorbox\tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '6.2.0'
+\c@tcbrastercolumn=\count324
+\c@tcbrasterrow=\count325
+\c@tcbrasternum=\count326
+\c@tcbraster=\count327
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/tikzfill\tikzfill.image.sty
+Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
+ (D:\Books\MikTex\tex/latex/tikzfill\tikzfill-common.sty
+Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
+) (D:\Books\MikTex\tex/latex/tikzfill\tikzlibraryfill.image.code.tex
+File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
+\l__tikzfill_img_box=\box80
+)) (D:\Books\MikTex\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
+)) (D:\Books\MikTex\tex/latex/tcolorbox\tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/pdfcol\pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+)
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box81
+\tcb@totalupperbox=\box82
+\tcb@totallowerbox=\box83
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.2.0'
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2024/05/23 v2.17q AMS math features
+\@mathmargin=\skip62
+
+For additional information on amsmath, use the `?' option.
+(D:\Books\MikTex\tex/latex/amsmath\amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (D:\Books\MikTex\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks37
+\ex@=\dimen290
+)) (D:\Books\MikTex\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen291
+) (D:\Books\MikTex\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count328
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count329
+\leftroot@=\count330
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count331
+\DOTSCASE@=\count332
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box84
+\strutbox@=\box85
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen292
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count333
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count334
+\dotsspace@=\muskip18
+\c@parentequation=\count335
+\dspbrk@lvl=\count336
+\tag@help=\toks38
+\row@=\count337
+\column@=\count338
+\maxfields@=\count339
+\andhelp@=\toks39
+\eqnshift@=\dimen293
+\alignsep@=\dimen294
+\tagshift@=\dimen295
+\tagwidth@=\dimen296
+\totwidth@=\dimen297
+\lineht@=\dimen298
+\@envbody=\toks40
+\multlinegap=\skip63
+\multlinetaggap=\skip64
+\mathdisplay@stack=\toks41
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)) (D:\Books\MikTex\tex/latex/tcolorbox\tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
+\tcbfitdim=\dimen299
+\tcb@lowerfitdim=\dimen300
+\tcb@upperfitdim=\dimen301
+\tcb@cur@hbadness=\count340
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcblistingsutf8.code.tex
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/tcolorbox\tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/listings\listings.sty
+\lst@mode=\count341
+\lst@gtempboxa=\box86
+\lst@token=\toks42
+\lst@length=\count342
+\lst@currlwidth=\dimen302
+\lst@column=\count343
+\lst@pos=\count344
+\lst@lostspace=\dimen303
+\lst@width=\dimen304
+\lst@newlines=\count345
+\lst@lineno=\count346
+\lst@maxwidth=\dimen305
+ (D:\Books\MikTex\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
+) (D:\Books\MikTex\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
+\c@lstnumber=\count347
+\lst@skipnumbers=\count348
+\lst@framebox=\box87
+) (D:\Books\MikTex\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/05/25 1.10b listings configuration
+))
+Package: listings 2024/05/25 1.10b (Carsten Heinz)
+ (D:\Books\MikTex\tex/latex/tcolorbox\tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/latex/tcolorbox\tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.2.0'
+)
+\c@tcblisting=\count349
+)) (D:\Books\MikTex\tex/latex/listingsutf8\listingsutf8.sty
+Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
+)) (D:\Books\MikTex\tex/latex/tcolorbox\tcbexternal.code.tex
+Library (tcolorbox): 'tcbexternal.code.tex' version '6.2.0'
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcbmagazine.code.tex
+Library (tcolorbox): 'tcbmagazine.code.tex' version '6.2.0'
+) (D:\Books\MikTex\tex/latex/tcolorbox\tcbvignette.code.tex
+Library (tcolorbox): 'tcbvignette.code.tex' version '6.2.0'
+(D:\Books\MikTex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (D:\Books\MikTex\tex/generic/pgf/libraries\pgflibraryfadings.code.tex
+File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (D:\Books\MikTex\tex/latex/tcolorbox\tcbposter.code.tex
+Library (tcolorbox): 'tcbposter.code.tex' version '6.2.0'
+)) (D:\Books\MikTex\tex/latex/xcolor\svgnam.def
+File: svgnam.def 2023/11/15 v3.01 Predefined colors according to SVG 1.1 (UK)
+) (D:\Books\MikTex\tex/latex/titlesec\titlesec.sty
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
+\ttl@box=\box88
+\beforetitleunit=\skip65
+\aftertitleunit=\skip66
+\ttl@plus=\dimen306
+\ttl@minus=\dimen307
+\ttl@toksa=\toks43
+\titlewidth=\dimen308
+\titlewidthlast=\dimen309
+\titlewidthfirst=\dimen310
+) (D:\Books\MikTex\tex/latex/cjk/UTF8\UTF8.enc
+File: UTF8.enc 2021/10/16 4.8.5
+) (D:\Books\MikTex\tex/latex/cjk/UTF8\UTF8.chr
+File: UTF8.chr 2021/10/16 4.8.5
+) (test.aux)
+\openout1 = `test.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=637.90929pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-1.1381pt
+* \headheight=15.0pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=38.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 51.
+(D:\Books\MikTex\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count350
+\scratchdimen=\dimen311
+\scratchbox=\box89
+\nofMPsegments=\count351
+\nofMParguments=\count352
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count353
+\MPscratchDim=\dimen312
+\MPnumerator=\count354
+\makeMPintoPDFobject=\count355
+\everyMPtoPDFconversion=\toks45
+) (D:\Books\MikTex\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (D:\Books\MikTex\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+\c@lstlisting=\count356
+LaTeX Font Info:    Trying to load font information for C70+rm on input line 53.
+ (D:\Books\MikTex\tex/latex/ctex/fd\c70rm.fd
+File: c70rm.fd 2022/07/14 v2.5.10 Chinese font definition (CTEX)
+)
+
+(D:\Books\MikTex\tex/generic/ctex/zhmap\ctex-zhmap-windows.tex
+File: ctex-zhmap-windows.tex 2022/07/14 v2.5.10 Windows font map loader for pdfTeX and DVIPDFMx (CTEX)
+{C:/Users/Administrator/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{UGBK.sfd}{Unicode.sfd}) [1
+
+
+] (test.toc)
+\tf@toc=\write4
+\openout4 = `test.toc'.
+
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.56 \newpage
+              [1
+
+]
+Chapter 1.
+
+
+[2
+
+]
+Missing character: There is no ) in font nullfont!
+
+
+[3]
+Chapter 2.
+
+
+[4
+
+]
+Missing character: There is no ) in font nullfont!
+
+
+[5]
+
+[6]
+Chapter 3.
+
+
+[7
+
+]
+
+[8]
+Overfull \hbox (39.53288pt too wide) in paragraph at lines 330--331
+[][] 
+ []
+
+
+
+[9] (test.aux)
+ ***********
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2020/03/25>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 40749 strings out of 473904
+ 849061 string characters out of 5740176
+ 1970908 words of memory out of 5000000
+ 62752 multiletter control sequences out of 15000+600000
+ 582747 words of font info for 123 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 119i,11n,123p,1250b,645s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simhei.ttf><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><C:/WINDOWS/Fonts/simsun.ttc><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Books/MikTex/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on test.pdf (10 pages, 404685 bytes).
+PDF statistics:
+ 399 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 341 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -17,7 +17,7 @@
 
 \fancyhead[L]{Q群~1029757969}
 
-\fancyfoot[R]{B站id 礼貌小猫咪}
+\fancyfoot[R]{B站ID 礼貌小猫咪}
 
 
 \renewcommand{\headrulewidth}{0pt} 
@@ -120,6 +120,11 @@
 \end{tikzpicture}
 
 \chapter{version 0.0.5}
+\begin{enumerate}
+  \item 优化了点标签的位置
+  \item 新增绘制扇形
+\end{enumerate}
+
 \newpage
 
 \section{优化点标签位置}
@@ -242,6 +247,86 @@
   \node [above left] at (L) {$L$};
 \end{tikzpicture}
 
+\chapter{version 0.0.6}
+\begin{enumerate}
+  \item 修复含下标点标签匹配不到的问题
+  \item 新增绘制贝塞尔曲线
+\end{enumerate}
+\newpage
 
+\section{含下标点标签}
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A_1) at (5.39,3.458);
+  \coordinate (B) at (-2.323,-0.698);
+  \coordinate (C_{1234}) at (1.884,-4.541);
+
+  % 几何元素
+  \draw (A_1) -- (B);
+  \draw (B) -- (C_{1234});
+  \draw (C_{1234}) -- (A_1);
+
+  % 点标记
+  \draw[fill=black] (A_1) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C_{1234}) circle (1pt);
+
+  % 点标签
+  \node [right] at (A_1) {$A_1$};
+  \node [left] at (B) {$B$};
+  \node [below] at (C_{1234}) {$C_{1234}$};
+\end{tikzpicture}
+
+\newpage
+\section{贝塞尔曲线}
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A) at (-3.076,-4.23);
+  \coordinate (B) at (0.69,8.652);
+  \coordinate (C) at (6.143,-6.931);
+  \coordinate (D) at (9.572,1.847);
+  \coordinate (E) at (-2.764,2.393);
+  \coordinate (F) at (0.456,-3.139);
+  \coordinate (G) at (5.131,8.34);
+  \coordinate (H) at (12.221,1.094);
+
+  % 参数方程曲线
+  \draw[dashed, smooth, samples=100, domain=0:1, variable=\t] plot
+    ({-3.076*\t^3+2.069*(1-\t)*\t^2+18.43*(1-\t)^2*\t+9.572*(1-\t)^3},
+     {-4.23*\t^3+25.955*(1-\t)*\t^2-20.792*(1-\t)^2*\t+1.847*(1-\t)^3});
+
+  \draw[smooth, samples=100, domain=0:1, variable=\t] plot
+    ({-2.764*\t^3+1.368*(1-\t)*\t^2+15.392*(1-\t)^2*\t+12.221*(1-\t)^3},
+     {2.393*\t^3-9.417*(1-\t)*\t^2+25.02*(1-\t)^2*\t+1.094*(1-\t)^3});
+
+  \draw[dash dot, smooth, samples=100, domain=0:1, variable=\t] plot
+    ({9.572*\t^3+2.069*(1-\t)*\t^2+18.43*(1-\t)^2*\t+5.131*(1-\t)^3},
+     {1.847*\t^3+25.955*(1-\t)*\t^2-20.792*(1-\t)^2*\t+8.34*(1-\t)^3});
+
+  \draw[dotted, smooth, samples=100, domain=0:1, variable=\t] plot
+    ({0.69*\t^3+28.715*(1-\t)*\t^2+36.662*(1-\t)^2*\t+0.456*(1-\t)^3},
+     {8.652*\t^3+5.542*(1-\t)*\t^2+3.283*(1-\t)^2*\t-3.139*(1-\t)^3});
+
+
+  % 点标记
+  \draw[fill=black] (A) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C) circle (1pt);
+  \draw[fill=black] (D) circle (1pt);
+  \draw[fill=black] (E) circle (1pt);
+  \draw[fill=black] (F) circle (1pt);
+  \draw[fill=black] (G) circle (1pt);
+  \draw[fill=black] (H) circle (1pt);
+
+  % 点标签
+  \node [left] at (A) {$A$};
+  \node [above] at (B) {$B$};
+  \node [below] at (C) {$C$};
+  \node [above right] at (D) {$D$};
+  \node [above left] at (E) {$E$};
+  \node [below left] at (F) {$F$};
+  \node [above right] at (G) {$G$};
+  \node [right] at (H) {$H$};
+\end{tikzpicture}
 
 \end{document}
