@@ -1268,7 +1268,9 @@
                 // 点的匹配
                 const pointRegex = /\\draw\s*\[fill=[^\]]+\]\s*\(([^)]+)\)\s*circle\s*\(([^)]+)\);/g;
                 // 点标签的匹配
-                const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$([^$]+(?:\{[^}]*\})?[^$]*)\$\}/g;
+                // 以下是没有负向前瞻断言（negative lookahead）来排除包含 \textrm{\degre} 的版本
+                // const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$([^$]+(?:\{[^}]*\})?[^$]*)\$\}/g;
+                const nodeRegex = /\\draw\[color=[^\]]+\]\s*\([^)]+\)\s*node\s*\{\$(?!.*\\textrm\{\\degre\})([^$]+(?:\{[^}]*\})?[^$]*)\$\}/g;
                 
                 const pointMap = new Map();
                 const pointMatches = [...code.matchAll(pointRegex)];
