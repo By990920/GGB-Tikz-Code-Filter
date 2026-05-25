@@ -1,45 +1,90 @@
-# GGB-TikZ Code Filter Project Description
+# GeoTikTrim — GeoGebra TikZ Code Filter
 
-Live at: https://ggb-tikz-code-filter.netlify.app/
+Live at: https://geotiktrim.site/
 
-## Project Introduction
-`GGB-Tikz-Code-Filter` is a tool designed to filter and process TikZ code within HTML pages. It primarily filters, cleans, and formats specific input content, converting it into TikZ graphical code suitable for targeted applications. This project combines HTML structure with JavaScript scripts to provide a user-friendly interface for manipulating and generating TikZ graphics.
+## Recommended: Browser Extension
 
- ## Screenshot
+One-click export and filter GeoGebra's verbose TikZ code directly in GeoGebra Classic, copied to clipboard instantly.
+
+### Installation
+
+1. Open the extensions page:
+   - Edge: `edge://extensions/`
+   - Chrome: `chrome://extensions/`
+2. Enable "Developer mode"
+3. Click "Load unpacked"
+4. Select the `extension/` folder from this repository
+
+### Usage
+
+1. Open [GeoGebra Classic](https://www.geogebra.org/classic)
+2. A floating panel appears on the right side of the page
+3. Check your filter options, then click "Copy TikZ"
+4. Paste into your `.tex` file
+
+See [`extension/README.md`](extension/README.md) for details.
+
+---
+
+## Alternative: Web App
+
+Open `GGB-Tikz-Code-Filter.html` directly in your browser or visit https://geotiktrim.site/, then manually paste GeoGebra-exported TikZ code to filter it.
+
+---
+
+## Features
+
+- **Points**: coordinate definitions, markers, smart label positioning
+- **Lines**: segments (deduplicated), line style conversion (solid, dashed, dotted, dash-dot)
+- **Curves**: circles, ellipses (with rotation), arcs, sectors, Bezier curves
+- **Functions**: function plots, quadratic functions, parametric equations
+- **Markers**: angle marks and labels, text labels
+
+---
+
+## Screenshot
 
 ![Screenshot](Screenshot.png)
 
-## Feature Overview
-- **Input Area**: Allows users to paste or enter raw data.
-- **Control Controls**: Provides buttons to trigger code filtering and processing operations.
-- **Output Area**: Displays the processed and formatted TikZ graphical code.
-- **Notification System**: Delivers feedback or informational messages to users regarding operation results.
-
-## Usage Instructions
-1. **Open the Page**: Open `GGB-Tikz-Code-Filter.html` directly in your browser.
-2. **Input Data**: Paste or enter the raw data to be processed in the input area.
-3. **Execute Operation**: Use the control buttons to filter and process the input content.
-4. **View Results**: The processed output will appear in the output area; use the copy button to extract the TikZ code.
-5. **Receive Feedback**: Operation results or error messages are displayed via the notification area.
-
-## Technical Details
-- The project is developed using HTML and JavaScript, requiring no backend support.
-- Front-end technologies are utilized to implement user interaction and code processing functionality.
-- Features a clear interface layout and intuitive interaction logic.
+---
 
 ## Project Structure
-- **HTML Container**:
-  - `div.container`: Main container enclosing all page content.
-  - `div.main-content`: Main content area containing input and output sections.
-- **Input Section**:
-  - `div.input-section`: User input area, including options and control buttons.
-- **Output Section**:
-  - `div.output-section`: Display area for processed results, including output content and additional information links.
-- **Notification Area**:
-  - `div#notification.notification`: Used to display operational prompts or error messages.
 
-## Contribution Guidelines
-Issues and Pull Requests are welcome! If you have improvement suggestions or discover bugs, please submit them to the project's Gitee page.
+```
+ggb-tikz-code-filter/
+├── GGB-Tikz-Code-Filter.html   # Web app (dev version)
+├── Netlify-index/
+│   └── index.html              # Web app (release version, identical content)
+├── extension/                  # Browser extension
+│   ├── manifest.json           # Chrome extension manifest
+│   ├── content.js              # Script injection + communication bridge
+│   ├── inject.js               # Access ggbApplet API
+│   ├── filter.js               # Core TikZ filtering logic
+│   ├── ui.js                   # Floating panel UI
+│   ├── toast.js                # Toast notifications
+│   ├── style.css               # Glassmorphism styling
+│   └── icons/                  # Extension icons
+├── test/                       # Test LaTeX documents
+├── AI-Prompt.md                # AI maintenance guide
+├── README.md
+├── README.zh-CN.md
+└── LICENSE
+```
 
-## Open Source License
-This project is licensed under the MIT License. Please refer to the LICENSE file in the repository for detailed information.
+---
+
+## Technical Details
+
+- 100% client-side, no backend required
+- Browser extension: Manifest V3, vanilla JavaScript
+- Web app: Plain HTML + CSS + JavaScript
+
+---
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+## License
+
+MIT License — see the `LICENSE` file for details.

@@ -329,4 +329,127 @@
   \node [right] at (H) {$H$};
 \end{tikzpicture}
 
+
+\begin{tikzpicture}[scale=1]
+  % 坐标点定义
+  \coordinate (A) at (-7,1.56);
+  \coordinate (B) at (-7,-1);
+  \coordinate (C) at (-1.54,-0.14);
+  \coordinate (D) at (0.16,1.58);
+  \coordinate (E) at (2.68,1.66);
+  \coordinate (F) at (-8.64,2.24);
+  \coordinate (G) at (-6.12,2.76);
+  \coordinate (H) at (-7.64,4);
+  \coordinate (I) at (-4.7,2.2);
+  \coordinate (J) at (5.26,3.38);
+  \coordinate (K) at (3.54,-2.34);
+  \coordinate (L) at (-7.8,1.48);
+  \coordinate (M) at (-4.56,-2.98);
+  \coordinate (N) at (-9.08,-4.22);
+  \coordinate (O) at (-3,3);
+  \coordinate (P) at (4.12,0.44);
+  \coordinate (Q) at (-2.8,-2.16);
+  \coordinate (R) at (-0.24,0);
+  \coordinate (S) at (-2.318,1.115);
+  \coordinate (T) at (2.04,-1.6);
+  \coordinate (U) at (0.82,1.8);
+  \coordinate (V) at (5.2,0.16);
+  \coordinate (W) at (-9,0);
+  \coordinate (Z) at (-9.84,1.54);
+  \coordinate (A_1) at (-8.08,1.64);
+  \coordinate (B_1) at (-5.92,4.58);
+  \coordinate (C_1) at (-4.2,3.52);
+
+  % 贝塞尔曲线
+  \draw[smooth, samples=100, domain=0:1, variable=\t] plot
+    ({-4.56*\t^3-23.4*(1-\t)*\t^2-27.24*(1-\t)^2*\t-2.8*(1-\t)^3},
+     {-2.98*\t^3+4.44*(1-\t)*\t^2-12.66*(1-\t)^2*\t-2.16*(1-\t)^3});
+
+  % 几何元素
+  % 角度
+  \fill [shift=(A), gray!30] (0,0) -- (-90:0.6) arc (-90:-17.294:0.6) -- cycle;
+
+  % 扇形绘制
+  \draw[dotted] [shift={(2.04,-1.6)}] (0,0) -- plot[domain=-4.368:0.508]({1*3.612*cos(\x r)+0*3.612*sin(\x r)},{0*3.612*cos(\x r)+1*3.612*sin(\x r)}) -- cycle;
+  \draw [shift={(-8.929,1.038)}] (0,0) -- plot[domain=0.617:4.644]({1*1.04*cos(\x r)+0*1.04*sin(\x r)},{0*1.04*cos(\x r)+1*1.04*sin(\x r)}) -- cycle;
+
+  \draw[dash dot] (D) circle (2.521cm);
+  \draw (-1.91,-0.618) circle (1.781cm);
+
+  % 椭圆
+  \draw[rotate around={11.659:((-7.38,2.5))}] (-7.38,2.5) ellipse (1.993cm and 1.522cm);
+
+  % 圆弧绘制
+  \draw[dashed, shift={(0.56,1.72)}, smooth] plot[domain=-0.345:2.796]({1*3.783*cos(\x r)+0*3.783*sin(\x r)},{0*3.783*cos(\x r)+1*3.783*sin(\x r)});
+
+  \draw (A) -- (B);
+  \draw (B) -- (C);
+  \draw (C) -- (A);
+  \draw (M) -- (N);
+  \draw[dashed] (B_1) -- (C_1);
+
+  % 点标记
+  \draw[fill=black] (A) circle (1pt);
+  \draw[fill=black] (B) circle (1pt);
+  \draw[fill=black] (C) circle (1pt);
+  \draw[fill=black] (D) circle (1pt);
+  \draw[fill=black] (E) circle (1pt);
+  \draw[fill=black] (F) circle (1pt);
+  \draw[fill=black] (G) circle (1pt);
+  \draw[fill=black] (H) circle (1pt);
+  \draw[fill=black] (I) circle (1pt);
+  \draw[fill=black] (J) circle (1pt);
+  \draw[fill=black] (K) circle (1pt);
+  \draw[fill=black] (L) circle (1pt);
+  \draw[fill=black] (M) circle (1pt);
+  \draw[fill=black] (N) circle (1pt);
+  \draw[fill=black] (O) circle (1pt);
+  \draw[fill=black] (P) circle (1pt);
+  \draw[fill=black] (Q) circle (1pt);
+  \draw[fill=black] (R) circle (1pt);
+  \draw[fill=black] (S) circle (1pt);
+  \draw[fill=black] (T) circle (1pt);
+  \draw[fill=black] (U) circle (1pt);
+  \draw[fill=black] (V) circle (1pt);
+  \draw[fill=black] (W) circle (1pt);
+  \draw[fill=black] (Z) circle (1pt);
+  \draw[fill=black] (A_1) circle (1pt);
+  \draw[fill=black] (B_1) circle (1pt);
+  \draw[fill=black] (C_1) circle (1pt);
+
+  % 点标签
+  \node [above left] at (A) {$A$};
+  \node [below left] at (B) {$B$};
+  \node [below right] at (C) {$C$};
+  \node [above right] at (D) {$D$};
+  \node [above right] at (E) {$E$};
+  \node [above left] at (F) {$F$};
+  \node [above left] at (G) {$G$};
+  \node [above left] at (H) {$H$};
+  \node [above left] at (I) {$I$};
+  \node [right] at (J) {$J$};
+  \node [below right] at (K) {$K$};
+  \node [above left] at (L) {$L$};
+  \node [below left] at (M) {$M$};
+  \node [below] at (N) {$N$};
+  \node [above left] at (O) {$O$};
+  \node [above right] at (P) {$P$};
+  \node [below left] at (Q) {$Q$};
+  \node [below right] at (R) {$R$};
+  \node [above left] at (S) {$S$};
+  \node [below right] at (T) {$T$};
+  \node [above right] at (U) {$U$};
+  \node [right] at (V) {$V$};
+  \node [below left] at (W) {$W$};
+  \node [left] at (Z) {$Z$};
+  \node [above left] at (A_1) {$A_1$};
+  \node [above] at (B_1) {$B_1$};
+  \node [above left] at (C_1) {$C_1$};
+
+  % 角度标签
+  \draw (-5.66,1.41) node {$\alpha = 72.71^{\circ}$};
+
+  % 文本标签
+  \draw (-5.82,-3.5) node[anchor=north west] {hello geotiktrim};
+\end{tikzpicture}
 \end{document}

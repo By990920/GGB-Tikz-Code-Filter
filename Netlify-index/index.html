@@ -573,10 +573,62 @@
                 font-size: 12px;
             }
         }
+        .extension-banner {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #555;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            opacity: 0.8;
+            font-weight: 600;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .extension-banner a {
+            color: #007bff;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .extension-banner a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .extension-banner .banner-close {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            line-height: 1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: color 0.2s;
+        }
+
+        .extension-banner .banner-close:hover {
+            color: #555;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="extension-banner" class="extension-banner">
+            <span>推荐使用插件! 网页版已经outttt! 不再维护更新!  <a href="https://gitee.com/Jack0920/ggb-tikz-code-filter" target="_blank">查看项目详情</a></span>
+            <button class="banner-close" onclick="document.getElementById('extension-banner').style.display='none'">&times;</button>
+        </div>
+
         <div class="memorial-note">
             🕯️谨此怀念方大同先生
         </div>

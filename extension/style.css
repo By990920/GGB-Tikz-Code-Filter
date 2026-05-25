@@ -1,0 +1,302 @@
+/**
+ * style.css — GeoTikTrim 插件样式
+ *
+ * 矩形可拖动漫版 + 下拉选项 + Toast 通知
+ * 支持深浅色自动切换 (prefers-color-scheme)
+ */
+
+/* ===== 悬浮面板 ===== */
+#geotiktrim-panel {
+  position: fixed;
+  right: 16px;
+  top: 160px;
+  z-index: 99990;
+  width: auto;
+  min-width: 0;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  user-select: none;
+  overflow: visible;
+}
+
+@media (prefers-color-scheme: light) {
+  #geotiktrim-panel {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #2c3e50;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #geotiktrim-panel {
+    background: rgba(30, 30, 30, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+}
+
+/* ===== 标题栏（拖动把手） ===== */
+.geotiktrim-header {
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  cursor: move;
+  user-select: none;
+  gap: 5px;
+}
+
+.geotiktrim-header-icon {
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+@media (prefers-color-scheme: light) {
+  .geotiktrim-header {
+    background: rgba(52, 152, 219, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .geotiktrim-header {
+    background: rgba(52, 152, 219, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ===== 主体 ===== */
+.geotiktrim-body {
+  padding: 8px 10px;
+}
+
+/* ===== 按钮行 ===== */
+.geotiktrim-btn-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* ===== 复制按钮 ===== */
+.geotiktrim-copy-btn {
+  flex: 1;
+  padding: 7px 0;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+}
+
+.geotiktrim-copy-btn:hover {
+  background: linear-gradient(135deg, #3aa8e8, #2c8ac0);
+  box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+  transform: translateY(-1px);
+}
+
+.geotiktrim-copy-btn:active {
+  transform: translateY(0);
+}
+
+.geotiktrim-copy-btn:disabled {
+  background: #95a5a6;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.geotiktrim-copy-btn:disabled:hover {
+  background: #95a5a6;
+  transform: none;
+}
+
+/* ===== 下拉按钮 ===== */
+.geotiktrim-dropdown-btn {
+  flex: 1;
+  padding: 7px 0;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  .geotiktrim-dropdown-btn {
+    background: rgba(0, 0, 0, 0.06);
+    color: #555;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  }
+  .geotiktrim-dropdown-btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .geotiktrim-dropdown-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  .geotiktrim-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(-1px);
+  }
+}
+
+/* ===== 下拉菜单 ===== */
+.geotiktrim-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+  margin-top: 0;
+}
+
+.geotiktrim-dropdown--open {
+  max-height: 220px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+/* ===== 下拉菜单项（checkbox） ===== */
+.geotiktrim-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 4px;
+  cursor: pointer;
+  font-size: 12px;
+  color: inherit;
+}
+
+.geotiktrim-dropdown-item:hover {
+  opacity: 0.85;
+}
+
+/* ===== 自定义 Checkbox ===== */
+.geotiktrim-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border: 2px solid #b0b0b0;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s;
+  background: transparent;
+  margin: 0;
+}
+
+.geotiktrim-checkbox:checked {
+  background: #3498db;
+  border-color: #3498db;
+}
+
+.geotiktrim-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.geotiktrim-checkbox:hover {
+  border-color: #3498db;
+}
+
+/* ===== 下拉分隔线 ===== */
+.geotiktrim-dropdown-divider {
+  height: 1px;
+  margin: 4px 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .geotiktrim-dropdown-divider {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .geotiktrim-dropdown-divider {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ===== 项目链接 ===== */
+.geotiktrim-dropdown-link {
+  display: block;
+  padding: 6px 4px;
+  font-size: 12px;
+  color: #3498db;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.geotiktrim-dropdown-link:hover {
+  background: rgba(52, 152, 219, 0.1);
+  text-decoration: none;
+}
+
+/* ===== Toast 通知 ===== */
+#geotiktrim-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 99999;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+#geotiktrim-toast.geotiktrim-toast--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.geotiktrim-toast--success {
+  background: rgba(46, 204, 113, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(46, 204, 113, 0.3);
+}
+
+.geotiktrim-toast--error {
+  background: rgba(231, 76, 60, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(231, 76, 60, 0.3);
+}

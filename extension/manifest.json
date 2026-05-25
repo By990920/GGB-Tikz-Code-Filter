@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "GeoTikTrim - TikZ Code Filter",
+  "version": "1.0.0",
+  "description": "一键导出并过滤 GeoGebra 导出的冗余 TikZ 代码，直接复制到剪贴板",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://*.geogebra.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.geogebra.org/*"],
+      "js": ["toast.js", "ui.js", "content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js", "filter.js", "icons/16.png"],
+      "matches": ["https://*.geogebra.org/*"]
+    }
+  ]
+}

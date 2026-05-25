@@ -1,12 +1,51 @@
 # GeoTikTrim-AI-Prompt
 
+## ⚠️ 核心逻辑同步提醒
+
+TikZ 过滤核心逻辑存在于**两处**，修改时需**同步更新**：
+
+| 位置 | 文件 | 用途 |
+|------|------|------|
+| 浏览器插件 | `extension/filter.js` | 纯函数模块，导出 `window.filterTikzCode(code, settings)` |
+| 网页版 | `GGB-Tikz-Code-Filter.html` 内 `<script>` 标签 | 内联 JavaScript，`cleanTikZCode()` 函数 |
+
+**修改顺序建议**：先改 `extension/filter.js`（独立模块、易测试），再将逻辑同步到网页版 HTML。
+
+---
+
+## 🚀 浏览器扩展架构
+
+扩展由 5 个 JS 文件 + 1 个 CSS 文件组成：
+
+```
+extension/
+├── manifest.json    # Manifest V3，声明权限和入口
+├── content.js       # 入口：注入脚本 + UI 初始化 + 通信桥接
+├── inject.js        # 页面上下文：直接访问 ggbApplet.exportPGF()
+├── filter.js        # 核心：TikZ 过滤逻辑（纯函数）
+├── ui.js            # UI：悬浮面板 + 选项下拉菜单
+├── toast.js         # UI：Toast 通知
+└── style.css        # 样式：毛玻璃 + 深/浅色自适应
+```
+
+**通信流程**：
+1. `content.js` 顺序注入 `filter.js` → `inject.js` 到 GeoGebra 页面
+2. 用户点击"复制 TikZ" → `content.js` 通过 `postMessage` 发 `exportAndCopy` 到 `inject.js`
+3. `inject.js` 调用 `ggbApplet.exportPGF()` 获取原始代码
+4. `inject.js` 调用 `window.filterTikzCode(rawCode, settings)` 过滤
+5. 过滤结果复制到剪贴板，`inject.js` 回传 `tikzResult` 给 `content.js`
+6. `content.js` 显示 Success/Error Toast
+
+---
+
 ## 🎯 核心目标
 您需要维护和扩展这个TikZ代码清理工具，它能将自动生成的TikZ代码转换为更简洁、可读的手写风格代码。
 
 ## 📋 现有功能概览
 
 ### 1. 基本框架
-- **主要函数**：`cleanTikZCode(code)` - 主入口函数
+- **插件版入口函数**：`window.filterTikzCode(code, settings)` — `extension/filter.js`
+- **网页版入口函数**：`cleanTikzCode(code)` — `GGB-Tikz-Code-Filter.html`
 - **处理流程**：
   1. 提取tikzpicture环境内容
   2. 解析各种图形元素
@@ -162,12 +201,15 @@ function extractNewElement(code) {
 
 ### 步骤3：集成到主处理流程
 
-1. **在`cleanTikZCode`函数中添加提取调用**
+1. **先在 `extension/filter.js` 中实现和测试**
+2. **再同步到 `GGB-Tikz-Code-Filter.html` 中相应的位置**
+
+在`cleanTikZCode`函数中添加提取调用：
    ```javascript
    const newElementResult = extractNewElement(code);
    ```
 
-2. **添加到结果输出部分**
+添加到结果输出部分：
    ```javascript
    if (newElementResult.hasNewElement) {
        result += '  % 新元素\n';
@@ -261,6 +303,7 @@ function extractCustomShape(code) {
 3. **性能考虑**：避免在循环中进行复杂的DOM操作或字符串处理
 4. **代码可读性**：保持与现有代码风格一致
 5. **向后兼容**：新功能不应破坏现有的处理逻辑
+6. **双版本同步**：修改过滤逻辑后务必同步更新 `extension/filter.js` 和网页版
 
 ## 📊 调试建议
 
@@ -279,4 +322,4 @@ function extractCustomShape(code) {
 
 ---
 
-**使用此提示词时**：当需要添加新的TikZ元素支持时，参考这个指南的结构和模式，确保新功能与现有框架无缝集成。
+**使用此提示词时**：当需要添加新的TikZ元素支持时，参考这个指南的结构和模式，确保新功能与现有框架无缝集成。记住先改 `extension/filter.js`，测试通过后再同步到网页版。
