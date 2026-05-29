@@ -87,4 +87,4 @@ Issues and Pull Requests are welcome!
 
 ## License
 
-MIT License — see the `LICENSE` file for details.
+GNU General Public License v2.0 — see the `LICENSE` file for details.

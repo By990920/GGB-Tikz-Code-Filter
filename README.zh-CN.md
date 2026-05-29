@@ -87,4 +87,4 @@ ggb-tikz-code-filter/
 
 ## 开源协议
 
-本项目采用 MIT License，请查看仓库中的 LICENSE 文件获取详细信息。
+GNU General Public License v2.0，详见 `LICENSE` 文件。

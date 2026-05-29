@@ -20,7 +20,7 @@ One-click export and filter GeoGebra's verbose TikZ code directly in GeoGebra Cl
    - **Include labels** — outputs `\node [above] at (X) {$X$}`
    - **Round coordinates** — rounds to 3 decimal places
 4. Click "Copy TikZ"
-5. "√ TikZ code copied" appears in the bottom-right corner
+5. "✓ TikZ 代码已复制" appears in the bottom-right corner
 6. Paste into your `.tex` file
 
 ## Features
