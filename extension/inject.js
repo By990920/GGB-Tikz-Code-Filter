@@ -5,8 +5,12 @@
  * 可直接访问 window.ggbApplet 和 window.filterTikzCode。
  *
  * 通信方式：window.postMessage
- *   content.js → inject.js:  { source: 'geotiktrim', action: 'exportAndCopy', settings: {...} }
- *   inject.js → content.js:  { source: 'geotiktrim', type: 'tikzResult', success: bool, error?: string }
+ *   content.js → inject.js:
+ *     { source: 'geotiktrim', action: 'exportAndCopy', settings: {...} }
+ *     { source: 'geotiktrim', action: 'injectCommands', commands: [...] }
+ *   inject.js → content.js:
+ *     { source: 'geotiktrim', type: 'tikzResult', success: bool, error?: string }
+ *     { source: 'geotiktrim', type: 'commandResult', success: bool, count?: number, error?: string }
  */
 
 (function () {
@@ -14,10 +18,6 @@
 
   var EXTENSION_ID = 'geotiktrim';
 
-  /**
-   * 等待 ggbApplet 就绪
-   * GeoGebra Classic 加载 ggbApplet 可能需要一些时间
-   */
   function waitForGgbApplet(timeoutMs) {
     return new Promise(function (resolve, reject) {
       if (window.ggbApplet && typeof window.ggbApplet.exportPGF === 'function') {
@@ -38,9 +38,6 @@
     });
   }
 
-  /**
-   * 从 ggbApplet 获取原始 TikZ 代码
-   */
   function exportPGF(ggbApplet) {
     return new Promise(function (resolve, reject) {
       try {
@@ -57,14 +54,10 @@
     });
   }
 
-  /**
-   * 复制文本到剪贴板
-   */
   function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       return navigator.clipboard.writeText(text);
     }
-    // 回退方案
     return new Promise(function (resolve, reject) {
       try {
         var textarea = document.createElement('textarea');
@@ -88,9 +81,6 @@
     });
   }
 
-  /**
-   * 向 content script 发送结果
-   */
   function sendResult(success, errorMessage) {
     window.postMessage({
       source: EXTENSION_ID,
@@ -100,9 +90,16 @@
     }, '*');
   }
 
-  /**
-   * 执行导出 → 过滤 → 复制 流程
-   */
+  function sendCommandResult(success, count, errorMessage) {
+    window.postMessage({
+      source: EXTENSION_ID,
+      type: 'commandResult',
+      success: success,
+      count: count || 0,
+      error: errorMessage || null
+    }, '*');
+  }
+
   function handleExportAndCopy(settings) {
     waitForGgbApplet(15000)
       .then(function (ggbApplet) {
@@ -127,11 +124,38 @@
       });
   }
 
-  /**
-   * 监听来自 content script 的消息
-   */
+  function handleInjectCommands(commands) {
+    waitForGgbApplet(15000)
+      .then(function (ggbApplet) {
+        if (!Array.isArray(commands) || commands.length === 0) {
+          throw new Error('指令列表为空');
+        }
+
+        var successCount = 0;
+        for (var i = 0; i < commands.length; i++) {
+          var cmd = commands[i];
+          if (!cmd || !cmd.trim()) continue;
+          try {
+            ggbApplet.evalCommand(cmd.trim());
+            successCount++;
+          } catch (cmdErr) {
+            console.warn('[GeoTikTrim] 指令执行失败: ' + cmd + ' - ' + (cmdErr.message || cmdErr));
+          }
+        }
+
+        if (successCount > 0) {
+          sendCommandResult(true, successCount);
+        } else {
+          throw new Error('所有指令执行失败');
+        }
+      })
+      .catch(function (err) {
+        console.error('[GeoTikTrim] 指令注入失败:', err);
+        sendCommandResult(false, 0, err.message || '未知错误');
+      });
+  }
+
   window.addEventListener('message', function (event) {
-    // 安全检查：只处理来自同一页面的消息
     if (event.source !== window) return;
     if (!event.data || event.data.source !== EXTENSION_ID) return;
 
@@ -139,9 +163,13 @@
       var settings = event.data.settings || {};
       handleExportAndCopy(settings);
     }
+
+    if (event.data.action === 'injectCommands') {
+      var commands = event.data.commands || [];
+      handleInjectCommands(commands);
+    }
   });
 
-  // 通知 content script：inject.js 已加载
   window.postMessage({
     source: EXTENSION_ID,
     type: 'injectReady'

@@ -1,0 +1,6 @@
+{
+  "model": "qwen3.6-plus",
+  "endpoint": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
+  "apiKey": "",
+  "enable_thinking": false
+}

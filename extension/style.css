@@ -1,9 +1,48 @@
 /**
  * style.css — GeoTikTrim 插件样式
  *
- * 矩形可拖动漫版 + 下拉选项 + Toast 通知
+ * 矩形可拖动漫版 + 截图粘贴区 + 设置面板 + Toast 通知
  * 支持深浅色自动切换 (prefers-color-scheme)
  */
+
+/* ===== CSS 变量 ===== */
+#geotiktrim-panel {
+  --gtt-bg: rgba(255, 255, 255, 0.92);
+  --gtt-border: rgba(0, 0, 0, 0.08);
+  --gtt-text: #2c3e50;
+  --gtt-text-secondary: #666;
+  --gtt-header-bg: rgba(52, 152, 219, 0.1);
+  --gtt-header-border: rgba(0, 0, 0, 0.06);
+  --gtt-btn-secondary-bg: rgba(0, 0, 0, 0.06);
+  --gtt-btn-secondary-text: #555;
+  --gtt-btn-secondary-shadow: rgba(0, 0, 0, 0.06);
+  --gtt-dropzone-bg: rgba(52, 152, 219, 0.04);
+  --gtt-dropzone-border: rgba(52, 152, 219, 0.35);
+  --gtt-dropzone-hover-bg: rgba(52, 152, 219, 0.1);
+  --gtt-divider: rgba(0, 0, 0, 0.08);
+  --gtt-input-bg: #fff;
+  --gtt-input-border: #d0d0d0;
+}
+
+@media (prefers-color-scheme: dark) {
+  #geotiktrim-panel {
+    --gtt-bg: rgba(30, 30, 30, 0.92);
+    --gtt-border: rgba(255, 255, 255, 0.1);
+    --gtt-text: #e0e0e0;
+    --gtt-text-secondary: #aaa;
+    --gtt-header-bg: rgba(52, 152, 219, 0.18);
+    --gtt-header-border: rgba(255, 255, 255, 0.06);
+    --gtt-btn-secondary-bg: rgba(255, 255, 255, 0.08);
+    --gtt-btn-secondary-text: #ccc;
+    --gtt-btn-secondary-shadow: rgba(0, 0, 0, 0.15);
+    --gtt-dropzone-bg: rgba(52, 152, 219, 0.06);
+    --gtt-dropzone-border: rgba(52, 152, 219, 0.3);
+    --gtt-dropzone-hover-bg: rgba(52, 152, 219, 0.14);
+    --gtt-divider: rgba(255, 255, 255, 0.08);
+    --gtt-input-bg: rgba(255, 255, 255, 0.08);
+    --gtt-input-border: #555;
+  }
+}
 
 /* ===== 悬浮面板 ===== */
 #geotiktrim-panel {
@@ -11,7 +50,7 @@
   right: 16px;
   top: 160px;
   z-index: 99990;
-  width: auto;
+  width: 220px;
   min-width: 0;
   border-radius: 10px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
@@ -19,26 +58,11 @@
   font-size: 13px;
   user-select: none;
   overflow: visible;
-}
-
-@media (prefers-color-scheme: light) {
-  #geotiktrim-panel {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    color: #2c3e50;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  #geotiktrim-panel {
-    background: rgba(30, 30, 30, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e0e0e0;
-  }
+  background: var(--gtt-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gtt-border);
+  color: var(--gtt-text);
 }
 
 /* ===== 标题栏（拖动把手） ===== */
@@ -51,6 +75,9 @@
   cursor: move;
   user-select: none;
   gap: 5px;
+  background: var(--gtt-header-bg);
+  border-bottom: 1px solid var(--gtt-header-border);
+  border-radius: 10px 10px 0 0;
 }
 
 .geotiktrim-header-icon {
@@ -58,23 +85,70 @@
   border-radius: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  .geotiktrim-header {
-    background: rgba(52, 152, 219, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .geotiktrim-header {
-    background: rgba(52, 152, 219, 0.18);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-}
-
 /* ===== 主体 ===== */
 .geotiktrim-body {
   padding: 8px 10px;
+}
+
+/* ===== 粘贴区 ===== */
+.geotiktrim-dropzone {
+  border: 2px dashed var(--gtt-dropzone-border);
+  border-radius: 8px;
+  background: var(--gtt-dropzone-bg);
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.geotiktrim-dropzone:hover {
+  background: var(--gtt-dropzone-hover-bg);
+  border-color: #3498db;
+}
+
+.geotiktrim-dropzone--dragover {
+  background: rgba(52, 152, 219, 0.18) !important;
+  border-color: #3498db !important;
+}
+
+.geotiktrim-dropzone--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.geotiktrim-dropzone--success {
+  border-color: #27ae60 !important;
+  background: rgba(46, 204, 113, 0.08) !important;
+}
+
+.geotiktrim-dropzone--error {
+  border-color: #e74c3c !important;
+  background: rgba(231, 76, 60, 0.06) !important;
+}
+
+.geotiktrim-dropzone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.geotiktrim-dropzone-icon {
+  font-size: 22px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.geotiktrim-dropzone-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gtt-text);
+}
+
+.geotiktrim-dropzone-hint {
+  font-size: 10px;
+  color: var(--gtt-text-secondary);
 }
 
 /* ===== 按钮行 ===== */
@@ -84,10 +158,8 @@
   align-items: center;
 }
 
-/* ===== 复制按钮 ===== */
-.geotiktrim-copy-btn {
-  flex: 1;
-  padding: 7px 0;
+/* ===== 通用按钮 ===== */
+.geotiktrim-btn {
   border: none;
   border-radius: 7px;
   font-size: 13px;
@@ -95,86 +167,150 @@
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
+}
+
+.geotiktrim-btn-primary {
+  flex: 1;
+  padding: 7px 0;
   color: #fff;
   background: linear-gradient(135deg, #3498db, #2980b9);
   box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
 }
 
-.geotiktrim-copy-btn:hover {
+.geotiktrim-btn-primary:hover {
   background: linear-gradient(135deg, #3aa8e8, #2c8ac0);
   box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
   transform: translateY(-1px);
 }
 
-.geotiktrim-copy-btn:active {
+.geotiktrim-btn-primary:active {
   transform: translateY(0);
 }
 
-.geotiktrim-copy-btn:disabled {
+.geotiktrim-btn-primary:disabled {
   background: #95a5a6;
   box-shadow: none;
   cursor: not-allowed;
   opacity: 0.7;
 }
 
-.geotiktrim-copy-btn:disabled:hover {
+.geotiktrim-btn-primary:disabled:hover {
   background: #95a5a6;
   transform: none;
 }
 
-/* ===== 下拉按钮 ===== */
-.geotiktrim-dropdown-btn {
+.geotiktrim-btn-secondary {
+  padding: 7px 10px;
+  background: var(--gtt-btn-secondary-bg);
+  color: var(--gtt-btn-secondary-text);
+  box-shadow: 0 2px 6px var(--gtt-btn-secondary-shadow);
+  min-width: 36px;
+}
+
+.geotiktrim-btn-secondary:hover {
+  opacity: 0.85;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.geotiktrim-btn-secondary:active {
+  transform: translateY(0);
+}
+
+.geotiktrim-btn-small {
+  padding: 5px 12px;
+  font-size: 12px;
   flex: 1;
-  padding: 7px 0;
-  border: none;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 400;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  .geotiktrim-dropdown-btn {
-    background: rgba(0, 0, 0, 0.06);
-    color: #555;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  }
-  .geotiktrim-dropdown-btn:hover {
-    background: rgba(0, 0, 0, 0.12);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .geotiktrim-dropdown-btn {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ccc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
-  .geotiktrim-dropdown-btn:hover {
-    background: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-    transform: translateY(-1px);
-  }
-}
-
-/* ===== 下拉菜单 ===== */
-.geotiktrim-dropdown {
+/* ===== 设置面板 ===== */
+.geotiktrim-settings {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease;
   margin-top: 0;
 }
 
-.geotiktrim-dropdown--open {
-  max-height: 220px;
+.geotiktrim-settings--open {
+  max-height: 400px;
   opacity: 1;
   margin-top: 8px;
+}
+
+.geotiktrim-settings-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gtt-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.geotiktrim-select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gtt-input-border);
+  background: var(--gtt-input-bg);
+  color: var(--gtt-text);
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.geotiktrim-select:focus {
+  border-color: #3498db;
+}
+
+.geotiktrim-input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gtt-input-border);
+  background: var(--gtt-input-bg);
+  color: var(--gtt-text);
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.geotiktrim-input:focus {
+  border-color: #3498db;
+}
+
+.geotiktrim-textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gtt-input-border);
+  background: var(--gtt-input-bg);
+  color: var(--gtt-text);
+  font-size: 11px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.4;
+}
+
+.geotiktrim-textarea:focus {
+  border-color: #3498db;
+}
+
+.geotiktrim-settings-btns {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* ===== 下拉分隔线 ===== */
+.geotiktrim-dropdown-divider {
+  height: 1px;
+  margin: 8px 0;
+  background: var(--gtt-divider);
 }
 
 /* ===== 下拉菜单项（checkbox） ===== */
@@ -182,7 +318,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 5px 4px;
+  padding: 4px 4px;
   cursor: pointer;
   font-size: 12px;
   color: inherit;
@@ -227,40 +363,6 @@
 
 .geotiktrim-checkbox:hover {
   border-color: #3498db;
-}
-
-/* ===== 下拉分隔线 ===== */
-.geotiktrim-dropdown-divider {
-  height: 1px;
-  margin: 4px 0;
-}
-
-@media (prefers-color-scheme: light) {
-  .geotiktrim-dropdown-divider {
-    background: rgba(0, 0, 0, 0.08);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .geotiktrim-dropdown-divider {
-    background: rgba(255, 255, 255, 0.08);
-  }
-}
-
-/* ===== 项目链接 ===== */
-.geotiktrim-dropdown-link {
-  display: block;
-  padding: 6px 4px;
-  font-size: 12px;
-  color: #3498db;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.15s;
-}
-
-.geotiktrim-dropdown-link:hover {
-  background: rgba(52, 152, 219, 0.1);
-  text-decoration: none;
 }
 
 /* ===== Toast 通知 ===== */

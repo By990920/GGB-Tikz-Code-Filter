@@ -329,63 +329,86 @@
   \node [right] at (H) {$H$};
 \end{tikzpicture}
 
+\newpage
 \begin{tikzpicture}[scale=1]
   % 坐标点定义
-  \coordinate (A) at (-7,1.56);
-  \coordinate (B) at (-7,-1);
-  \coordinate (C) at (-1.54,-0.14);
-  \coordinate (D) at (0.16,1.58);
-  \coordinate (E) at (2.68,1.66);
-  \coordinate (F) at (-8.64,2.24);
-  \coordinate (G) at (-6.12,2.76);
-  \coordinate (H) at (-7.64,4);
-  \coordinate (I) at (-4.7,2.2);
-  \coordinate (J) at (5.26,3.38);
-  \coordinate (K) at (3.54,-2.34);
-  \coordinate (L) at (-7.8,1.48);
-  \coordinate (M) at (-4.56,-2.98);
-  \coordinate (N) at (-9.08,-4.22);
-  \coordinate (O) at (-3,3);
-  \coordinate (P) at (4.12,0.44);
-  \coordinate (Q) at (-2.8,-2.16);
-  \coordinate (R) at (-0.24,0);
-  \coordinate (S) at (-2.318,1.115);
-  \coordinate (T) at (2.04,-1.6);
-  \coordinate (U) at (0.82,1.8);
-  \coordinate (V) at (5.2,0.16);
-  \coordinate (W) at (-9,0);
-  \coordinate (Z) at (-9.84,1.54);
-  \coordinate (A_1) at (-8.08,1.64);
-  \coordinate (B_1) at (-5.92,4.58);
-  \coordinate (C_1) at (-4.2,3.52);
+  \coordinate (A) at (-3.436,4.073);
+  \coordinate (B) at (-0.356,5.313);
+  \coordinate (C) at (-5.071,2.307);
+  \coordinate (D) at (-0.391,4.147);
+  \coordinate (E) at (-5.015,3.22);
+  \coordinate (F) at (0.145,4.82);
+  \coordinate (G) at (1.275,4.473);
+  \coordinate (H) at (-3.105,1.953);
+  \coordinate (I) at (0.255,2.073);
+  \coordinate (J) at (1.7,5.72);
+  \coordinate (K) at (0.26,4.48);
+  \coordinate (L) at (2.08,2.44);
+  \coordinate (M) at (4.36,4.04);
+  \coordinate (N) at (-3.878,0.142);
+  \coordinate (O) at (-2.258,0.182);
+  \coordinate (P) at (-3.218,-1.918);
+  \coordinate (Q) at (-3.06,1.16);
+  \coordinate (R) at (-1.66,-0.12);
+  \coordinate (S) at (1.622,-0.582);
+  \coordinate (T) at (3.582,1.218);
+  \coordinate (U) at (0.762,0.818);
+  \coordinate (V) at (-1.482,1);
+  \coordinate (W) at (-2.482,-0.92);
+  \coordinate (Z) at (-1.182,-1.16);
+  \coordinate (A_1) at (-0.62,-1.94);
+  \coordinate (B_1) at (1.44,-1.88);
+  \coordinate (C_1) at (0,-0.76);
+  \coordinate (D_1) at (3.384,1.898);
+  \coordinate (E_1) at (2.784,4.078);
+  \coordinate (F_1) at (2.124,2.958);
+  \coordinate (G_1) at (0.564,-1.927);
+  \coordinate (H_1) at (5.564,2.073);
+  \coordinate (I_1) at (2.664,0.413);
+  \coordinate (J_1) at (-4.749,-4.218);
+  \coordinate (K_1) at (1.071,-2.338);
+  \coordinate (L_1) at (4.171,-4.418);
+  \coordinate (M_1) at (-3.909,-2.278);
+
+  % 函数图像
+  \begin{scope}
+    \clip(-8.764,-5.442) rectangle (11.964,6.885);
+    \draw[smooth,samples=500,domain=-2:2] plot(\x,{(\x)^(3)});
+  \end{scope}
 
   % 贝塞尔曲线
   \draw[smooth, samples=100, domain=0:1, variable=\t] plot
-    ({-4.56*\t^3-23.4*(1-\t)*\t^2-27.24*(1-\t)^2*\t-2.8*(1-\t)^3},
-     {-2.98*\t^3+4.44*(1-\t)*\t^2-12.66*(1-\t)^2*\t-2.16*(1-\t)^3});
+    ({-3.909*\t^3+12.513*(1-\t)*\t^2-14.247*(1-\t)^2*\t+1.071*(1-\t)^3},
+     {-2.278*\t^3-13.255*(1-\t)*\t^2-12.655*(1-\t)^2*\t-2.338*(1-\t)^3});
 
   % 几何元素
   % 角度
-  \fill [shift=(A), gray!30] (0,0) -- (-90:0.6) arc (-90:-17.294:0.6) -- cycle;
+  \fill [shift=(H), gray!30] (0,0) -- (2.045:0.545) arc (2.045:29.914:0.545) -- cycle;
 
   % 扇形绘制
-  \draw[dotted] [shift={(2.04,-1.6)}] (0,0) -- plot[domain=-4.368:0.508]({1*3.612*cos(\x r)+0*3.612*sin(\x r)},{0*3.612*cos(\x r)+1*3.612*sin(\x r)}) -- cycle;
-  \draw [shift={(-8.929,1.038)}] (0,0) -- plot[domain=0.617:4.644]({1*1.04*cos(\x r)+0*1.04*sin(\x r)},{0*1.04*cos(\x r)+1*1.04*sin(\x r)}) -- cycle;
+  \draw [shift={(-1.482,1)}] (0,0) -- plot[domain=4.232:4.85]({1*2.165*cos(\x r)+0*2.165*sin(\x r)},{0*2.165*cos(\x r)+1*2.165*sin(\x r)}) -- cycle;
+  \draw [shift={(0.405,-1.725)}] (0,0) -- plot[domain=-2.935:1.968]({1*1.047*cos(\x r)+0*1.047*sin(\x r)},{0*1.047*cos(\x r)+1*1.047*sin(\x r)}) -- cycle;
 
-  \draw[dash dot] (D) circle (2.521cm);
-  \draw (-1.91,-0.618) circle (1.781cm);
+  \draw (-3.046,-0.727) circle (1.203cm);
 
   % 椭圆
-  \draw[rotate around={11.659:((-7.38,2.5))}] (-7.38,2.5) ellipse (1.993cm and 1.522cm);
+  \draw[dash dot, rotate around={-74.612:((3.084,2.988))}] (3.084,2.988) ellipse (1.473cm and 0.945cm);
+  \draw[rotate around={38.66:((3.064,0.073))}] (3.064,0.073) ellipse (3.243cm and 0.516cm);
 
   % 圆弧绘制
-  \draw[dashed, shift={(0.56,1.72)}, smooth] plot[domain=-0.345:2.796]({1*3.783*cos(\x r)+0*3.783*sin(\x r)},{0*3.783*cos(\x r)+1*3.783*sin(\x r)});
+  \draw[dotted, shift={(-2.36,0.52)}, smooth] plot[domain=-0.741:2.401]({1*0.948*cos(\x r)+0*0.948*sin(\x r)},{0*0.948*cos(\x r)+1*0.948*sin(\x r)});
+  \draw[shift={(2.211,0.744)}, smooth] plot[domain=-1.989:3.09]({1*1.451*cos(\x r)+0*1.451*sin(\x r)},{0*1.451*cos(\x r)+1*1.451*sin(\x r)});
 
-  \draw (A) -- (B);
-  \draw (B) -- (C);
-  \draw (C) -- (A);
-  \draw (M) -- (N);
-  \draw[dashed] (B_1) -- (C_1);
+  \draw[dashed] (A) -- (B);
+  \draw[dash dot] (C) -- (D);
+  \draw (E) -- (F);
+  \draw (G) -- (H);
+  \draw (H) -- (I);
+  \draw (I) -- (G);
+  \draw (J) -- (K);
+  \draw (K) -- (L);
+  \draw (L) -- (M);
+  \draw (M) -- (J);
 
   % 点标记
   \draw[fill=black] (A) circle (1pt);
@@ -415,41 +438,60 @@
   \draw[fill=black] (A_1) circle (1pt);
   \draw[fill=black] (B_1) circle (1pt);
   \draw[fill=black] (C_1) circle (1pt);
+  \draw[fill=black] (D_1) circle (1pt);
+  \draw[fill=black] (E_1) circle (1pt);
+  \draw[fill=black] (F_1) circle (1pt);
+  \draw[fill=black] (G_1) circle (1pt);
+  \draw[fill=black] (H_1) circle (1pt);
+  \draw[fill=black] (I_1) circle (1pt);
+  \draw[fill=black] (J_1) circle (1pt);
+  \draw[fill=black] (K_1) circle (1pt);
+  \draw[fill=black] (L_1) circle (1pt);
+  \draw[fill=black] (M_1) circle (1pt);
 
   % 点标签
   \node [above left] at (A) {$A$};
-  \node [below left] at (B) {$B$};
-  \node [below right] at (C) {$C$};
-  \node [above right] at (D) {$D$};
-  \node [above right] at (E) {$E$};
+  \node [above left] at (B) {$B$};
+  \node [left] at (C) {$C$};
+  \node [above left] at (D) {$D$};
+  \node [left] at (E) {$E$};
   \node [above left] at (F) {$F$};
-  \node [above left] at (G) {$G$};
+  \node [above right] at (G) {$G$};
   \node [above left] at (H) {$H$};
-  \node [above left] at (I) {$I$};
-  \node [right] at (J) {$J$};
-  \node [below right] at (K) {$K$};
-  \node [above left] at (L) {$L$};
-  \node [below left] at (M) {$M$};
-  \node [below] at (N) {$N$};
-  \node [above left] at (O) {$O$};
-  \node [above right] at (P) {$P$};
-  \node [below left] at (Q) {$Q$};
-  \node [below right] at (R) {$R$};
-  \node [above left] at (S) {$S$};
-  \node [below right] at (T) {$T$};
+  \node [above right] at (I) {$I$};
+  \node [above] at (J) {$J$};
+  \node [above right] at (K) {$K$};
+  \node [above right] at (L) {$L$};
+  \node [above right] at (M) {$M$};
+  \node [below left] at (N) {$N$};
+  \node [below left] at (O) {$O$};
+  \node [below left] at (P) {$P$};
+  \node [above left] at (Q) {$Q$};
+  \node [below left] at (R) {$R$};
+  \node [below right] at (S) {$S$};
+  \node [above right] at (T) {$T$};
   \node [above right] at (U) {$U$};
-  \node [right] at (V) {$V$};
+  \node [above left] at (V) {$V$};
   \node [below left] at (W) {$W$};
-  \node [left] at (Z) {$Z$};
-  \node [above left] at (A_1) {$A_1$};
-  \node [above] at (B_1) {$B_1$};
-  \node [above left] at (C_1) {$C_1$};
+  \node [below left] at (Z) {$Z$};
+  \node [below left] at (A_1) {$A_1$};
+  \node [below right] at (B_1) {$B_1$};
+  \node [below left] at (C_1) {$C_1$};
+  \node [above right] at (D_1) {$D_1$};
+  \node [above right] at (E_1) {$E_1$};
+  \node [above right] at (F_1) {$F_1$};
+  \node [below right] at (G_1) {$G_1$};
+  \node [right] at (H_1) {$H_1$};
+  \node [below right] at (I_1) {$I_1$};
+  \node [below left] at (J_1) {$J_1$};
+  \node [below right] at (K_1) {$K_1$};
+  \node [below] at (L_1) {$L_1$};
+  \node [below left] at (M_1) {$M_1$};
 
   % 角度标签
-  \draw (-5.66,1.41) node {$\alpha = 72.71^{\circ}$};
+  \draw (-0.964,2.44) node {$\alpha = 27.87^{\circ}$};
 
   % 文本标签
-  \draw (-5.82,-3.5) node[anchor=north west] {hello geotiktrim};
+  \draw (1.945,-1.369) node[anchor=north west] {hello GeoTikTrim};
 \end{tikzpicture}
-
 \end{document}
